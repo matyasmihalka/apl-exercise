@@ -17,7 +17,7 @@ import {
 export const Header: FC = () => {
   return (
     <StyledHeader>
-      <HeaderContainer>
+      <HeaderContainer as="nav">
         <LeftSideContainer>
           <HeaderIcon>
             <DogIcon />

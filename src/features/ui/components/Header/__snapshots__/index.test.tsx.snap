@@ -2,16 +2,16 @@
 
 exports[`[UI] Header should match snapshot 1`] = `
 <header
-  className="sc-2639b80d-0 fisBIt"
+  className="sc-7eb9ba89-0 kTCgGK"
 >
-  <div
-    className="sc-92a00793-0 sc-2639b80d-1 eBtPvm YwiTl"
+  <nav
+    className="sc-da39a1bf-0 sc-7eb9ba89-1 QGUoF gPhbmK"
   >
     <div
-      className="sc-2639b80d-4 bTWZzC"
+      className="sc-7eb9ba89-4 ekOxea"
     >
       <div
-        className="sc-2639b80d-3 iDpVVD"
+        className="sc-7eb9ba89-3 dzPNWK"
       >
         <svg
           height="54px"
@@ -26,18 +26,18 @@ exports[`[UI] Header should match snapshot 1`] = `
         </svg>
       </div>
       <div
-        className="sc-2639b80d-2 koxxul"
+        className="sc-7eb9ba89-2 ipVlrE"
       >
         Recent Articles
       </div>
       <div
-        className="sc-2639b80d-2 koxxul"
+        className="sc-7eb9ba89-2 ipVlrE"
       >
         About
       </div>
     </div>
     <a
-      className="sc-2639b80d-5 jdFlJx"
+      className="sc-7eb9ba89-5 hMxUaO"
       onClick={[Function]}
       onMouseEnter={[Function]}
     >
@@ -57,6 +57,6 @@ exports[`[UI] Header should match snapshot 1`] = `
         />
       </svg>
     </a>
-  </div>
+  </nav>
 </header>
 `;
