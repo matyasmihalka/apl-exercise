@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { Html, Head, Main, NextScript } from 'next/document'
 
-// import { withServerSideStyles } from '~/features/ui/lib/withStyledComponents'
+import { withServerSideStyles } from '~/features/ui/lib/withStyledComponents'
 
 const Document = () => (
   <Html lang="en">
@@ -19,5 +19,5 @@ const Document = () => (
     </body>
   </Html>
 )
-export default Document
-// export default withServerSideStyles(Document)
+
+export default withServerSideStyles(Document)

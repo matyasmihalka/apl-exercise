@@ -1,13 +1,16 @@
-import Button from '@mui/material/Button'
 import type { NextPage } from 'next'
 
+import { Layout } from '~/features/ui/components/Layout'
 import { MainContainer } from '~/features/ui/components/MainContainer'
+import { MuiButton } from '~/features/ui/components/MuiButton'
 
 export const DashboardPage: NextPage = () => {
   return (
-    <MainContainer>
-      <div>Dashboard Page, deployed on Vercel</div>
-      <Button variant="contained">Contained</Button>
-    </MainContainer>
+    <Layout>
+      <MainContainer>
+        <div>Dashboard Page, deployed on Vercel</div>
+        <MuiButton variant="contained">Bigger Button</MuiButton>
+      </MainContainer>
+    </Layout>
   )
 }
