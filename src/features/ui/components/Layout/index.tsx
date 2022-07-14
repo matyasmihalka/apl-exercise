@@ -2,6 +2,8 @@ import type { FC, ReactNode } from 'react'
 
 import { Main } from './styled'
 
+import { Header } from '../Header'
+
 type Props = {
   children: NonNullable<ReactNode>
 }
@@ -9,7 +11,7 @@ type Props = {
 export const Layout: FC<Props> = ({ children }) => {
   return (
     <Main>
-      <header>Header</header>
+      <Header />
       {children}
     </Main>
   )
