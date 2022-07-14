@@ -25,8 +25,6 @@ export const Header: FC = () => {
           <HeaderItem>Recent Articles</HeaderItem>
           <HeaderItem>About</HeaderItem>
         </LeftSideContainer>
-
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <Link href={Routes.LOGIN}>
           <LoginLink>
             Log in <RightArrowIcon />
