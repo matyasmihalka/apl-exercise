@@ -12,12 +12,12 @@ export const StyledHeader = styled.header`
 export const HeaderContainer = styled(MainContainer)`
   display: flex;
   justify-content: space-between;
-  /* padding: 0 2rem; */
+  align-items: center;
 `
 
 export const HeaderItem = styled.div`
   margin-right: 4rem;
-  padding: 1.7rem 0;
+
   color: ${colors.text.base};
 `
 
@@ -27,8 +27,14 @@ export const HeaderIcon = styled.div`
 
 export const LeftSideContainer = styled.div`
   display: flex;
+  align-items: center;
 
   ${HeaderItem}:nth-child(3) {
     color: ${colors.text.secondary};
   }
+`
+
+export const LoginLink = styled.a`
+  color: ${colors.accent.primary};
+  cursor: pointer;
 `

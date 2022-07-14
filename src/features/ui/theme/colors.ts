@@ -21,10 +21,10 @@ export const colors = {
     //   inactive: palette.grey[850],
     //   inactiveHover: palette.grey[650],
   },
-  //   accent: {
-  //     primary: palette.green,
-  //     primaryHover: palette.greenDarker,
-  //     destructive: palette.pink,
-  //     destructiveHover: palette.pinkDarker,
-  //   },
+  accent: {
+    primary: palette.blue,
+    //   primaryHover: palette.greenDarker,
+    //   destructive: palette.pink,
+    //   destructiveHover: palette.pinkDarker,
+  },
 }
