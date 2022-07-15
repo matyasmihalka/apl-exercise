@@ -14,13 +14,14 @@ export const DashboardPage: NextPage = () => {
 
   const { articles } = useArticles()
   // const articles = data.items
-  console.log(articles)
 
   return (
     <Layout>
       <MainContainer>
         <StyledH1>Recent Articles</StyledH1>
-        <ArticleCard />
+        {articles.map((article) => (
+          <ArticleCard key={article.articleId} article={article} />
+        ))}
       </MainContainer>
     </Layout>
   )

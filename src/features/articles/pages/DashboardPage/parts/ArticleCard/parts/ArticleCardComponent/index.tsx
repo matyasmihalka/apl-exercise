@@ -1,8 +1,9 @@
+import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
-import doggo from '~/features/articles/fixtures/assets/doggo.webp'
+import type { ArticleType } from '~/features/articles/types'
 // import doggo from '~/features/articles/fixtures/assets/chester.jpg'
 import { Routes } from '~/features/core/constants/routes'
 
@@ -17,32 +18,31 @@ import {
   StyledSection,
 } from './styled'
 
-export const ArticleCardComponent: FC = () => (
+export type Props = {
+  article: ArticleType
+  imgURL: string | StaticImageData
+}
+
+export const ArticleCardComponent: FC<Props> = ({ article, imgURL }) => (
   <StyledArticle>
     <ImgWrapper>
       <Image
-        src={doggo}
+        src={imgURL}
         width="272px"
         height="244px"
         layout="fixed"
         alt="cute dog"
         objectFit="cover"
-        placeholder="blur"
+        // placeholder="blur"
         priority
       />
     </ImgWrapper>
     <StyledSection>
-      <StyledH2>Dachshund Dog Breed Facts & Information</StyledH2>
+      <StyledH2>{article.title}</StyledH2>
       <AuthorContainer>
-        John Newmann <span>&nbsp;&bull;</span> 12/7/2022
+        John Newmann <span>&nbsp;&bull;</span> {article.createdAt}
       </AuthorContainer>
-      <StyledP>
-        https://www.rover.com/blog/breeds/dachshund/ Clever, lively, courageous,
-        entertaining: that’s the Dachshund. The Dachshund’s name comes from the
-        German words for badger (dachs) and dog (hund), but you might know the
-        Dachshund more informally as a doxie, wiener dog, hot dog, sausage dog,
-        or badger dog.
-      </StyledP>
+      <StyledP>{article.perex}</StyledP>
       <div>
         <Link href={Routes.DASHBOARD}>
           <ArticleLink>Read whole article</ArticleLink>
