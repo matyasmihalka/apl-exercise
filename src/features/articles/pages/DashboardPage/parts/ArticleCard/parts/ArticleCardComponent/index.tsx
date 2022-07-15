@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { FC } from 'react'
 
 import doggo from '~/features/articles/fixtures/assets/doggo.webp'
+// import doggo from '~/features/articles/fixtures/assets/chester.jpg'
 import { Routes } from '~/features/core/constants/routes'
 
 import {
@@ -40,8 +41,7 @@ export const ArticleCardComponent: FC = () => (
         entertaining: that’s the Dachshund. The Dachshund’s name comes from the
         German words for badger (dachs) and dog (hund), but you might know the
         Dachshund more informally as a doxie, wiener dog, hot dog, sausage dog,
-        or badger dog. Dachshunds were originally bred in 15th century Germany
-        to hunt badgers.
+        or badger dog.
       </StyledP>
       <div>
         <Link href={Routes.DASHBOARD}>
