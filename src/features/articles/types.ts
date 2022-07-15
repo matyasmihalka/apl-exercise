@@ -6,3 +6,12 @@ export type ArticleType = {
   perex: string
   title: string
 }
+
+export type ArticlesResponse = {
+  items: ArticleType[]
+  pagination: {
+    limit: number
+    offset: number
+    total: number
+  }
+}
