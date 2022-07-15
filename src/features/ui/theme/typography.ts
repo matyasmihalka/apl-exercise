@@ -2,6 +2,7 @@
 
 import { css } from 'styled-components'
 
+import { colors } from './colors'
 import { mq } from './mq'
 
 // import { colors } from './colors'
@@ -15,7 +16,7 @@ export const font = {
 
 const allHeadingsStyle = css`
   font-family: ${font.headings};
-  font-weight: inherit;
+  font-weight: 500;
 `
 
 // const allLabelsStyle = css`
@@ -26,9 +27,9 @@ const allHeadingsStyle = css`
 //   font-weight: 600;
 // `
 
-// const allParagraphsStyle = css`
-//   color: ${colors.text.dimmed};
-// `
+const allParagraphsStyle = css`
+  color: ${colors.text.base};
+`
 
 export const typography = {
   heading: {
@@ -41,14 +42,14 @@ export const typography = {
         font-size: 4rem;
       }
     `,
-    // h2: css`
-    //   ${allHeadingsStyle}
-    //   font-size: 2.4rem;
+    h2: css`
+      ${allHeadingsStyle}
+      font-size: 2.4rem;
 
-    //   ${mq.medium} {
-    //     font-size: 2.8rem;
-    //   }
-    // `,
+      ${mq.medium} {
+        font-size: 2.4rem;
+      }
+    `,
     // h3: css`
     //   ${allHeadingsStyle}
     //   font-size: 2rem;
@@ -81,18 +82,18 @@ export const typography = {
   //     font-size: 1.6rem;
   //   `,
   // },
-  // paragraph: {
-  //   small: css`
-  //     ${allParagraphsStyle}
-  //     font-size: 1.4rem;
-  //   `,
-  //   normal: css`
-  //     ${allParagraphsStyle}
-  //     font-size: 1.6rem;
-  //   `,
-  //   large: css`
-  //     ${allParagraphsStyle}
-  //     font-size: 1.8rem;
-  //   `,
-  // },
+  paragraph: {
+    small: css`
+      ${allParagraphsStyle}
+      font-size: 1.4rem;
+    `,
+    normal: css`
+      ${allParagraphsStyle}
+      font-size: 1.6rem;
+    `,
+    // large: css`
+    //   ${allParagraphsStyle}
+    //   font-size: 1.8rem;
+    // `,
+  },
 }
