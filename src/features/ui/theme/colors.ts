@@ -15,7 +15,7 @@ export const colors = {
     //     author: palette.grey[200],
   },
   background: {
-    //   light: palette.white,
+    // light: palette.grey[950],
     dimmed: palette.grey[900],
     //   dark: palette.grey[100],
     //   inactive: palette.grey[850],
