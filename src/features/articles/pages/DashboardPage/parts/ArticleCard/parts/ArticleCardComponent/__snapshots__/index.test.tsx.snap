@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`[UI] Article card component should match snapshot 1`] = `
+<article
+  className="sc-dd2d0918-0 fnOlDO"
+>
+  <div
+    className="sc-dd2d0918-2 czUzRg"
+  >
+    <span
+      style={
+        Object {
+          "background": "none",
+          "border": 0,
+          "boxSizing": "border-box",
+          "display": "inline-block",
+          "height": 244,
+          "margin": 0,
+          "opacity": 1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "relative",
+          "width": 272,
+        }
+      }
+    >
+      <img
+        alt="cute dog"
+        data-nimg="fixed"
+        decoding="async"
+        onError={[Function]}
+        onLoad={[Function]}
+        src="/_next/image?url=%2Fimg.jpg&w=640&q=75"
+        srcSet="/_next/image?url=%2Fimg.jpg&w=384&q=75 1x, /_next/image?url=%2Fimg.jpg&w=640&q=75 2x"
+        style={
+          Object {
+            "border": "none",
+            "bottom": 0,
+            "boxSizing": "border-box",
+            "display": "block",
+            "height": 0,
+            "left": 0,
+            "margin": "auto",
+            "maxHeight": "100%",
+            "maxWidth": "100%",
+            "minHeight": "100%",
+            "minWidth": "100%",
+            "objectFit": "cover",
+            "objectPosition": undefined,
+            "padding": 0,
+            "position": "absolute",
+            "right": 0,
+            "top": 0,
+            "width": 0,
+          }
+        }
+      />
+    </span>
+  </div>
+  <section
+    className="sc-dd2d0918-1 bAfxyV"
+  >
+    <h2
+      className="sc-dd2d0918-3 OphW"
+    >
+      Dachshund Dog Breed Facts & Information
+    </h2>
+    <div
+      className="sc-dd2d0918-4 bJFpcu"
+    >
+      John Newmann 
+      <span>
+         •
+      </span>
+       
+      15/07/2022
+    </div>
+    <p
+      className="sc-dd2d0918-5 pTfjA"
+    >
+      Clever, lively, courageous, entertaining: that’s the Dachshund. The Dachshund’s name comes from the German words for badger (dachs) and dog (hund)
+    </p>
+    <div>
+      <a
+        className="sc-dd2d0918-6 jBplkR"
+        onClick={[Function]}
+        onMouseEnter={[Function]}
+      >
+        Read whole article
+      </a>
+      <span
+        className="sc-dd2d0918-7 kshweV"
+      >
+        0
+         
+        Comments
+      </span>
+    </div>
+  </section>
+</article>
+`;

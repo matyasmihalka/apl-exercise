@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-// import { colors } from './colors'
 import { font } from './typography'
-// font import missing
 
 export const GlobalStyle = createGlobalStyle`
 *, *::before, *::after {
@@ -27,6 +25,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-smooth: always;
+  
 }
 
 a {

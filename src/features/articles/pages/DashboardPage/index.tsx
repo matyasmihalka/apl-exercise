@@ -1,17 +1,27 @@
 import type { NextPage } from 'next'
+// import { useEffect } from 'react'
 
-import { DogIcon } from '~/features/ui/components/Header/parts/DogIcon'
 import { Layout } from '~/features/ui/components/Layout'
 import { MainContainer } from '~/features/ui/components/MainContainer'
-import { MuiButton } from '~/features/ui/components/MuiButton'
+
+import { ArticleCard } from './parts/ArticleCard'
+import { StyledH1 } from './styled'
+
+import { useArticles } from '../../hooks/useArticles'
 
 export const DashboardPage: NextPage = () => {
+  // const [img, setImg] = useState()
+
+  const { articles } = useArticles()
+  // const articles = data.items
+
   return (
     <Layout>
       <MainContainer>
-        <div>Dashboard Page, deployed on Vercel</div>
-        <MuiButton variant="contained">Bigger Button</MuiButton>
-        <DogIcon />
+        <StyledH1>Recent Articles</StyledH1>
+        {articles.map((article) => (
+          <ArticleCard key={article.articleId} article={article} />
+        ))}
       </MainContainer>
     </Layout>
   )
