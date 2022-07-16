@@ -22,7 +22,9 @@ export const Header: FC = () => {
           <HeaderIcon>
             <DogIcon />
           </HeaderIcon>
-          <HeaderItem>Recent Articles</HeaderItem>
+          <HeaderItem>
+            <Link href={Routes.DASHBOARD}>Recent Articles</Link>{' '}
+          </HeaderItem>
           <HeaderItem>About</HeaderItem>
         </LeftSideContainer>
         <Link href={Routes.LOGIN}>

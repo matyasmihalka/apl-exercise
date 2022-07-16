@@ -1,14 +1,15 @@
 import styled from 'styled-components'
 
-import { typography } from '~/features/ui/theme/typography'
+import { MainContainer } from '~/features/ui/components/MainContainer'
 
-import { AuthorContainer } from '../../components/AuthorContainer'
-
-export const StyledH1 = styled.h1`
-  ${typography.heading.h1}
-  margin: 6rem 0 2.4rem 0;
+export const PositionedSpinner = styled.div`
+  display: flex;
+  margin: auto;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 `
 
-export const StyledAuthorContainer = styled(AuthorContainer)`
-  margin-bottom: 2.4rem;
+export const FlexMainContainer = styled(MainContainer)`
+  display: flex;
 `
