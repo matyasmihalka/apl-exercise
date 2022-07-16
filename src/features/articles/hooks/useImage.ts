@@ -3,7 +3,7 @@ import { useQuery } from 'react-query'
 import { publicApi } from '~/features/api'
 
 const useImage = (id: string) => {
-  const result = useQuery(['articles', id], async () => {
+  const result = useQuery(['images', id], async () => {
     const response = await publicApi.get(`images/${id}`)
 
     if (!response.ok) {
