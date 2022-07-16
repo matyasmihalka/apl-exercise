@@ -1,5 +1,7 @@
 import { GlobalStyle } from '../src/features/ui/theme/global'
 import * as NextImage from 'next/image'
+import { ThemeProvider as MUIThemeProvider } from '@mui/material/styles'
+import { muiTheme } from '~/features/ui/theme/miuTheme'
 
 import doggo from '~/features/articles/fixtures/assets/doggo.webp'
 
@@ -31,7 +33,9 @@ const withStyles = (Story, context) => (
       />
     </head>
     <GlobalStyle />
-    <Story {...context} />
+    <MUIThemeProvider theme={muiTheme}>
+      <Story {...context} />
+    </MUIThemeProvider>
   </>
 )
 

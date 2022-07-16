@@ -1,10 +1,11 @@
+import CircularProgress from '@mui/material/CircularProgress'
+import { format } from 'date-fns'
 import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
-import type { ArticleType } from '~/features/articles/types'
-// import doggo from '~/features/articles/fixtures/assets/chester.jpg'
+import type { ArticleDetailTye, ArticleType } from '~/features/articles/types'
 import { Routes } from '~/features/core/constants/routes'
 
 import {
@@ -21,9 +22,14 @@ import {
 export type Props = {
   article: ArticleType
   imgURL: string | StaticImageData
+  articleDetail: ArticleDetailTye | undefined
 }
 
-export const ArticleCardComponent: FC<Props> = ({ article, imgURL }) => (
+export const ArticleCardComponent: FC<Props> = ({
+  article,
+  imgURL,
+  articleDetail,
+}) => (
   <StyledArticle>
     <ImgWrapper>
       <Image
@@ -40,14 +46,22 @@ export const ArticleCardComponent: FC<Props> = ({ article, imgURL }) => (
     <StyledSection>
       <StyledH2>{article.title}</StyledH2>
       <AuthorContainer>
-        John Newmann <span>&nbsp;&bull;</span> {article.createdAt}
+        John Newmann <span>&nbsp;&bull;</span>{' '}
+        {format(new Date(article.createdAt), 'dd/MM/yyyy')}
       </AuthorContainer>
       <StyledP>{article.perex}</StyledP>
       <div>
         <Link href={Routes.DASHBOARD}>
           <ArticleLink>Read whole article</ArticleLink>
         </Link>
-        <Comments>4 Comments</Comments>
+        <Comments>
+          {articleDetail ? (
+            articleDetail.comments.length
+          ) : (
+            <CircularProgress size={10} color="primary" />
+          )}{' '}
+          Comments
+        </Comments>
       </div>
     </StyledSection>
   </StyledArticle>

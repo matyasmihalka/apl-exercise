@@ -1,6 +1,7 @@
 import type { FC } from 'react'
 
 import blurredDoggo from '~/features/articles/fixtures/assets/chesterBlurred.jpg'
+import { useArticleDetail } from '~/features/articles/hooks/useArticleDetail'
 import { useImage } from '~/features/articles/hooks/useImage'
 import type { ArticleType } from '~/features/articles/types'
 
@@ -12,6 +13,14 @@ type Props = {
 
 export const ArticleCard: FC<Props> = ({ article }) => {
   const { imageObjectURL } = useImage(article.imageId)
+  const { articleDetail } = useArticleDetail(article.articleId)
   const img = imageObjectURL ? imageObjectURL : blurredDoggo
-  return <ArticleCardComponent article={article} imgURL={img} />
+
+  return (
+    <ArticleCardComponent
+      article={article}
+      imgURL={img}
+      articleDetail={articleDetail}
+    />
+  )
 }

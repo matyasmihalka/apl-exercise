@@ -15,3 +15,14 @@ export type ArticlesResponse = {
     total: number
   }
 }
+
+export type ArticleDetailTye = {
+  articleId: string
+  title: string
+  perex: string
+  content: string
+  imageId: string
+  createdAt: string
+  lastUpdatedAt: string
+  comments: []
+}
