@@ -2,7 +2,15 @@ import { useQuery } from 'react-query'
 
 import { publicApi } from '~/features/api'
 
-import type { ArticleDetailTye } from '../types'
+import type { ArticleDetailTye, CommentType } from '../types'
+
+const sortComments = () => (a: CommentType, b: CommentType) => {
+  return a.createdAt < b.createdAt ? 1 : -1
+}
+
+const listBuilder = (comments: CommentType[]) => {
+  return comments.sort(sortComments())
+}
 
 const useArticleDetail = (id: string) => {
   const result = useQuery<ArticleDetailTye, Error>(
@@ -21,6 +29,9 @@ const useArticleDetail = (id: string) => {
   )
 
   const articleDetail = result.data
+  if (articleDetail) {
+    articleDetail.comments = listBuilder(articleDetail.comments)
+  }
 
   return { ...result, articleDetail }
 }

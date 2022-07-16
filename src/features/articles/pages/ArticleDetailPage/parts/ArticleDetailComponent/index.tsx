@@ -22,8 +22,8 @@ type Props = {
 }
 
 export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
-  <>
-    <ArticleContainer>
+  <ArticleContainer>
+    <div>
       <StyledH1>{article.title}</StyledH1>
       <StyledAuthorContainer createdAt={article.createdAt} />
       <ImageWrapper>
@@ -45,7 +45,9 @@ export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
         comments={article.comments}
         articleID={article.articleId}
       />
-    </ArticleContainer>
-    <div>Related Articles</div>
-  </>
+    </div>
+    <aside>
+      <div>Related Articles</div>
+    </aside>
+  </ArticleContainer>
 )

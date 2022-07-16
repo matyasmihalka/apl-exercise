@@ -20,9 +20,8 @@ export const ImageWrapper = styled.div`
 `
 
 export const ArticleContainer = styled.section`
-  width: 70%;
-  display: flex;
-  flex-direction: column;
+  /* display: flex;
+  flex-direction: column; */
   padding-bottom: 10rem;
 `
 

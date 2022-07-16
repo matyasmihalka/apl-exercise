@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import TimeAgo from 'react-timeago'
 
 import { useVoteDown } from '~/features/articles/hooks/useVoteDown'
 import { useVoteUp } from '~/features/articles/hooks/useVoteUp'
@@ -43,7 +44,9 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
       <LeftContainer>
         <AuthorRow>
           <h3>{comment.author}</h3>
-          <span>{comment.createdAt}</span>
+          <span>
+            <TimeAgo date={comment.createdAt} />
+          </span>
         </AuthorRow>
         <StyledP>{comment.content}</StyledP>
         <ActionsContainer>
