@@ -1,8 +1,9 @@
 import { useQuery } from 'react-query'
 
+import { publicApi } from '~/features/api'
+
 import type { ArticlesResponse } from '../types'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
 const initialData: ArticlesResponse = {
   items: [],
   pagination: {
@@ -14,17 +15,15 @@ const initialData: ArticlesResponse = {
 
 const useArticles = () => {
   const result = useQuery<ArticlesResponse, Error>('articles', async () => {
-    const response = await fetch(`${apiUrl}/articles`, {
-      method: 'GET',
-      headers: {
-        'X-API-KEY': '568bb63d-f9c5-456f-9d5d-bb73e3ecefed',
-      },
-    })
+    const response = await publicApi.get('articles')
 
     if (!response.ok) {
       throw new Error(`Failed to load articles`)
     }
 
+    //This type assertion is necessary, have no idea why eslint thinks its not
+    // For know I will leave it like this as it works
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     return (await response.json()) as ArticlesResponse
   })
 

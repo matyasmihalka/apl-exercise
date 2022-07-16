@@ -1,19 +1,13 @@
 import { useQuery } from 'react-query'
 
-const apiUrl = process.env.NEXT_PUBLIC_API_URL
+import { publicApi } from '~/features/api'
 
 const useImage = (id: string) => {
   const result = useQuery(['articles', id], async () => {
-    const response = await fetch(`${apiUrl}/images/${id}`, {
-      method: 'GET',
-      headers: {
-        'X-API-KEY': '568bb63d-f9c5-456f-9d5d-bb73e3ecefed',
-        'Content-Type': 'image/jpeg',
-      },
-    })
+    const response = await publicApi.get(`images/${id}`)
 
     if (!response.ok) {
-      throw new Error(`Failed to load articles`)
+      throw new Error(`Failed to load image`)
     }
 
     return await response.blob()
