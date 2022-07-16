@@ -21,11 +21,15 @@ export const ImageWrapper = styled.div`
 
 export const ArticleContainer = styled.section`
   width: 70%;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10rem;
 `
 
 export const StyledP = styled.p`
-  ${typography.paragraph.normal}
+  ${typography.paragraph.large}
   color: ${colors.text.base};
+  line-height: 3.4rem;
   margin-bottom: 4rem;
 `
 

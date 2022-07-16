@@ -26,3 +26,11 @@ export type ArticleDetailTye = {
   lastUpdatedAt: string
   comments: []
 }
+
+export type CommentType = {
+  commentId: string
+  author: string
+  content: string
+  createdAt: string
+  score: number
+}

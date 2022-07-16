@@ -3,6 +3,7 @@ import Image from 'next/image'
 import type { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 
+import { CommentsSection } from '~/features/articles/components/CommentsSection'
 import type { ArticleDetailTye } from '~/features/articles/types'
 
 import {
@@ -39,7 +40,8 @@ export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
         <ReactMarkdown>{article.content}</ReactMarkdown>
       </StyledP>
       <StyledHr />
-      <StyledH2>Comments (4)</StyledH2>
+      <StyledH2>Comments ({article.comments.length})</StyledH2>
+      <CommentsSection comments={article.comments} />
     </ArticleContainer>
     <div>Related Articles</div>
   </>
