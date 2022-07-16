@@ -15,7 +15,7 @@ export const StyledAuthorContainer = styled(AuthorContainer)`
 
 export const ImageWrapper = styled.div`
   position: relative;
-  height: 400px;
+  height: 40vh;
   margin-bottom: 2.4rem;
 `
 
@@ -26,4 +26,15 @@ export const ArticleContainer = styled.section`
 export const StyledP = styled.p`
   ${typography.paragraph.normal}
   color: ${colors.text.base};
+  margin-bottom: 4rem;
+`
+
+export const StyledHr = styled.hr`
+  border-color: ${colors.border.light};
+  border-width: 1px 0 0 0;
+`
+
+export const StyledH2 = styled.h2`
+  ${typography.heading.h2}
+  margin: 2.4rem 0;
 `

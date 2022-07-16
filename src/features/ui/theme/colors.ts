@@ -27,4 +27,7 @@ export const colors = {
     //   destructive: palette.pink,
     //   destructiveHover: palette.pinkDarker,
   },
+  border: {
+    light: palette.grey[950],
+  },
 }

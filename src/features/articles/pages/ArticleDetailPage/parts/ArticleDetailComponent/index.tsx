@@ -1,6 +1,7 @@
 import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
 import type { FC } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 import type { ArticleDetailTye } from '~/features/articles/types'
 
@@ -9,6 +10,8 @@ import {
   ImageWrapper,
   StyledAuthorContainer,
   StyledH1,
+  StyledH2,
+  StyledHr,
   StyledP,
 } from './styled'
 
@@ -31,7 +34,12 @@ export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
           priority
         />
       </ImageWrapper>
-      <StyledP>{article.content}</StyledP>
+      <StyledP>
+        <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
+        <ReactMarkdown>{article.content}</ReactMarkdown>
+      </StyledP>
+      <StyledHr />
+      <StyledH2>Comments (4)</StyledH2>
     </ArticleContainer>
     <div>Related Articles</div>
   </>

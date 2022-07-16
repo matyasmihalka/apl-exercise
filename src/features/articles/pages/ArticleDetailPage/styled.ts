@@ -12,4 +12,5 @@ export const PositionedSpinner = styled.div`
 
 export const FlexMainContainer = styled(MainContainer)`
   display: flex;
+  padding-bottom: 8rem;
 `
