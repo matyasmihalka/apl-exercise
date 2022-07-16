@@ -16,6 +16,14 @@ export type ArticlesResponse = {
   }
 }
 
+export type CommentType = {
+  commentId: string
+  author: string
+  content: string
+  createdAt: string
+  score: number
+}
+
 export type ArticleDetailTye = {
   articleId: string
   title: string
@@ -24,13 +32,5 @@ export type ArticleDetailTye = {
   imageId: string
   createdAt: string
   lastUpdatedAt: string
-  comments: []
-}
-
-export type CommentType = {
-  commentId: string
-  author: string
-  content: string
-  createdAt: string
-  score: number
+  comments: CommentType[]
 }

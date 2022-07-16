@@ -10,10 +10,10 @@ import {
   ArticleContainer,
   ImageWrapper,
   StyledAuthorContainer,
+  StyledDiv,
   StyledH1,
   StyledH2,
   StyledHr,
-  StyledP,
 } from './styled'
 
 type Props = {
@@ -35,13 +35,16 @@ export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
           priority
         />
       </ImageWrapper>
-      <StyledP>
+      <StyledDiv>
         <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
         <ReactMarkdown>{article.content}</ReactMarkdown>
-      </StyledP>
+      </StyledDiv>
       <StyledHr />
       <StyledH2>Comments ({article.comments.length})</StyledH2>
-      <CommentsSection comments={article.comments} />
+      <CommentsSection
+        comments={article.comments}
+        articleID={article.articleId}
+      />
     </ArticleContainer>
     <div>Related Articles</div>
   </>

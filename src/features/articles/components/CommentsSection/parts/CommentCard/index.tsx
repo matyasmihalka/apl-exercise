@@ -1,5 +1,7 @@
 import type { FC } from 'react'
 
+import { useVoteDown } from '~/features/articles/hooks/useVoteDown'
+import { useVoteUp } from '~/features/articles/hooks/useVoteUp'
 import type { CommentType } from '~/features/articles/types'
 
 import { DownIcon } from './parts/DownIcon'
@@ -16,12 +18,24 @@ import {
 
 type Props = {
   comment: CommentType
+  articleID: string
 }
 
-export const CommentCard: FC<Props> = ({ comment }) => {
+export const CommentCard: FC<Props> = ({ comment, articleID }) => {
   const [firstName, lastName] = comment.author.split(' ')
 
   const { score } = comment
+
+  const { mutate: voteUpMutate } = useVoteUp(articleID)
+  const { mutate: voteDownMutate } = useVoteDown(articleID)
+
+  const voteUpHandler = () => {
+    voteUpMutate(comment.commentId)
+  }
+
+  const voteDownHandler = () => {
+    voteDownMutate(comment.commentId)
+  }
 
   return (
     <CommentContainer>
@@ -34,10 +48,10 @@ export const CommentCard: FC<Props> = ({ comment }) => {
         <StyledP>{comment.content}</StyledP>
         <ActionsContainer>
           <span>{score ? (score > 0 ? `+${score}` : score) : '0'}</span>
-          <Button type="button">
+          <Button type="button" onClick={voteUpHandler}>
             <UpIcon />
           </Button>
-          <Button type="button">
+          <Button type="button" onClick={voteDownHandler}>
             <DownIcon />
           </Button>
         </ActionsContainer>

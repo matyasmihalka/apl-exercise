@@ -26,7 +26,7 @@ export const ArticleContainer = styled.section`
   padding-bottom: 10rem;
 `
 
-export const StyledP = styled.p`
+export const StyledDiv = styled.div`
   ${typography.paragraph.large}
   color: ${colors.text.base};
   line-height: 3.4rem;
