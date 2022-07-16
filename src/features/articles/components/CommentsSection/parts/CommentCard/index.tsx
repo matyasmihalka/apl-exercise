@@ -2,8 +2,17 @@ import type { FC } from 'react'
 
 import type { CommentType } from '~/features/articles/types'
 
+import { DownIcon } from './parts/DownIcon'
 import { InitialsIcon } from './parts/InitialsIcon'
-import { AuthorRow, CommentContainer, LeftContainer, StyledP } from './styled'
+import { UpIcon } from './parts/UpIcon'
+import {
+  ActionsContainer,
+  AuthorRow,
+  Button,
+  CommentContainer,
+  LeftContainer,
+  StyledP,
+} from './styled'
 
 type Props = {
   comment: CommentType
@@ -11,6 +20,8 @@ type Props = {
 
 export const CommentCard: FC<Props> = ({ comment }) => {
   const [firstName, lastName] = comment.author.split(' ')
+
+  const { score } = comment
 
   return (
     <CommentContainer>
@@ -21,6 +32,15 @@ export const CommentCard: FC<Props> = ({ comment }) => {
           <span>{comment.createdAt}</span>
         </AuthorRow>
         <StyledP>{comment.content}</StyledP>
+        <ActionsContainer>
+          <span>{score ? (score > 0 ? `+${score}` : score) : '0'}</span>
+          <Button type="button">
+            <UpIcon />
+          </Button>
+          <Button type="button">
+            <DownIcon />
+          </Button>
+        </ActionsContainer>
       </LeftContainer>
     </CommentContainer>
   )
