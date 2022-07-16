@@ -1,6 +1,7 @@
 import type { Meta, Story } from '@storybook/react/types-6-0'
 
 import doggo from '~/features/articles/fixtures/assets/doggo.webp'
+import type { ArticleDetailTye } from '~/features/articles/types'
 
 import type { Props } from '..'
 import { ArticleCardComponent } from '..'
@@ -26,4 +27,5 @@ Default.args = {
     title: 'Dachshund Dog Breed Facts & Information',
   },
   imgURL: doggo,
+  articleDetail: { comments: [] } as ArticleDetailTye,
 }
