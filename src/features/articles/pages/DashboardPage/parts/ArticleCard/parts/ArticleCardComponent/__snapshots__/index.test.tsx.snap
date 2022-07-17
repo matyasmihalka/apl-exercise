@@ -2,10 +2,10 @@
 
 exports[`[UI] Article card component should match snapshot 1`] = `
 <article
-  className="sc-dd2d0918-0 fnOlDO"
+  className="sc-abd3bd29-0 hlZyiZ"
 >
   <div
-    className="sc-dd2d0918-2 czUzRg"
+    className="sc-abd3bd29-2 eolfgv"
   >
     <span
       style={
@@ -58,16 +58,17 @@ exports[`[UI] Article card component should match snapshot 1`] = `
     </span>
   </div>
   <section
-    className="sc-dd2d0918-1 bAfxyV"
+    className="sc-abd3bd29-1 eyVhfC"
   >
     <h2
-      className="sc-dd2d0918-3 OphW"
+      className="sc-abd3bd29-3 GMVPF"
     >
       Dachshund Dog Breed Facts & Information
     </h2>
     <div
-      className="sc-dd2d0918-4 bJFpcu"
+      className="sc-a61f1b2d-0 gLYASV sc-abd3bd29-4 dQYpdj"
     >
+       
       John Newmann 
       <span>
          •
@@ -76,20 +77,20 @@ exports[`[UI] Article card component should match snapshot 1`] = `
       15/07/2022
     </div>
     <p
-      className="sc-dd2d0918-5 pTfjA"
+      className="sc-abd3bd29-5 kYYlrn"
     >
       Clever, lively, courageous, entertaining: that’s the Dachshund. The Dachshund’s name comes from the German words for badger (dachs) and dog (hund)
     </p>
     <div>
       <a
-        className="sc-dd2d0918-6 jBplkR"
+        className="sc-abd3bd29-6 ljTNhW"
         onClick={[Function]}
         onMouseEnter={[Function]}
       >
         Read whole article
       </a>
       <span
-        className="sc-dd2d0918-7 kshweV"
+        className="sc-abd3bd29-7 dvysSG"
       >
         0
          

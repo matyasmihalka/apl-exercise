@@ -4,8 +4,9 @@ import type { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { CommentsSection } from '~/features/articles/components/CommentsSection'
-import type { ArticleDetailTye } from '~/features/articles/types'
+import type { ArticleDetailTye, ArticleType } from '~/features/articles/types'
 
+import { RelatedArticlesComponent } from './parts/RelatedArticlesComponent'
 import {
   ArticleContainer,
   ImageWrapper,
@@ -13,15 +14,19 @@ import {
   StyledDiv,
   StyledH1,
   StyledH2,
-  StyledHr,
 } from './styled'
 
 type Props = {
   article: ArticleDetailTye
   img: string | StaticImageData
+  relatedArticles: ArticleType[]
 }
 
-export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
+export const ArticleDetailComponent: FC<Props> = ({
+  article,
+  img,
+  relatedArticles,
+}) => (
   <ArticleContainer>
     <div>
       <StyledH1>{article.title}</StyledH1>
@@ -39,15 +44,13 @@ export const ArticleDetailComponent: FC<Props> = ({ article, img }) => (
         <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
         <ReactMarkdown>{article.content}</ReactMarkdown>
       </StyledDiv>
-      <StyledHr />
+
       <StyledH2>Comments ({article.comments.length})</StyledH2>
       <CommentsSection
         comments={article.comments}
         articleID={article.articleId}
       />
     </div>
-    <aside>
-      <div>Related Articles</div>
-    </aside>
+    <RelatedArticlesComponent articles={relatedArticles} />
   </ArticleContainer>
 )

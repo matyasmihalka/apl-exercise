@@ -5,7 +5,7 @@ exports[`[UI] Header should match snapshot 1`] = `
   className="sc-7eb9ba89-0 kTCgGK"
 >
   <nav
-    className="sc-da39a1bf-0 sc-7eb9ba89-1 QGUoF gPhbmK"
+    className="sc-5d8f1bce-0 sc-7eb9ba89-1 grJnEo gPhbmK"
   >
     <div
       className="sc-7eb9ba89-4 ekOxea"
@@ -28,7 +28,14 @@ exports[`[UI] Header should match snapshot 1`] = `
       <div
         className="sc-7eb9ba89-2 ipVlrE"
       >
-        Recent Articles
+        <a
+          href="/"
+          onClick={[Function]}
+          onMouseEnter={[Function]}
+        >
+          Recent Articles
+        </a>
+         
       </div>
       <div
         className="sc-7eb9ba89-2 ipVlrE"

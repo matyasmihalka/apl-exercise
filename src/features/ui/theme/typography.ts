@@ -50,14 +50,14 @@ export const typography = {
         font-size: 2.4rem;
       }
     `,
-    // h3: css`
-    //   ${allHeadingsStyle}
-    //   font-size: 2rem;
+    h3: css`
+      ${allHeadingsStyle}
+      font-size: 2rem;
 
-    //   ${mq.medium} {
-    //     font-size: 2.2rem;
-    //   }
-    // `,
+      ${mq.medium} {
+        font-size: 2.2rem;
+      }
+    `,
     h4: css`
       ${allHeadingsStyle}
       font-size: 1.6rem;

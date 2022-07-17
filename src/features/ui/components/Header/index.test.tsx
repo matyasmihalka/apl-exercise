@@ -15,4 +15,11 @@ describe('[UI] Header', () => {
     //     ).toBeVisible();
     // console.log('test running')
   })
+
+  // it('should render header', () => {
+  //   render(<Header />)
+
+  //   console.log(screen.getByRole('navigation'))
+  //   expect(screen.getByRole('navigation')).toHaveTextContent(/Recent Articles/)
+  // })
 })
