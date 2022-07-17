@@ -43,6 +43,7 @@
     "@strv/eslint-config-react": "^4.1.0",
     "@strv/eslint-config-typescript": "^3.1.2",
     "@strv/prettier-config": "^2.0.0",
+    "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.5",
     "@types/node": "18.0.4",
