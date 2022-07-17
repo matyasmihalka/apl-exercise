@@ -14,11 +14,20 @@ const customJestConfig = {
   // Add more setup options before each test is run
   // https://jestjs.io/docs/configuration#testenvironment-string
   testEnvironment: 'jest-environment-jsdom',
+  // moduleDirectories: ['node_modules', '<rootDir>/'],
   modulePaths: ['<rootDir>/src'], // https://jestjs.io/docs/configuration#modulepaths-arraystring
   // https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring
-  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: join('<rootDir>', compilerOptions.baseUrl),
-  }),
+  moduleNameMapper: {
+    ...pathsToModuleNameMapper(compilerOptions.paths, {
+      prefix: join('<rootDir>', compilerOptions.baseUrl),
+    }),
+    'react-markdown':
+      '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
+  },
+
+  // moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+  //   prefix: join('<rootDir>', compilerOptions.baseUrl),
+  // }),
 }
 
 // createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async

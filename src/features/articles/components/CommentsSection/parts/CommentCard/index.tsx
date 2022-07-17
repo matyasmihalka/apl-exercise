@@ -40,7 +40,10 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
 
   return (
     <CommentContainer>
-      <InitialsIcon initials={`${firstName[0]}${lastName[0]}`} />
+      <div>
+        <InitialsIcon initials={`${firstName[0]}${lastName[0]}`} />
+      </div>
+
       <LeftContainer>
         <AuthorRow>
           <h3>{comment.author}</h3>

@@ -16,7 +16,7 @@ import {
   StyledH2,
 } from './styled'
 
-type Props = {
+export type Props = {
   article: ArticleDetailTye
   img: string | StaticImageData
   relatedArticles: ArticleType[]

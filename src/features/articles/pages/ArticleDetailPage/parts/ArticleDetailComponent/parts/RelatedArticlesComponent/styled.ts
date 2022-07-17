@@ -28,6 +28,7 @@ export const StyledH4 = styled.h4`
 export const StyledP = styled.p`
   ${typography.paragraph.small}
   color: ${colors.text.secondary};
+  margin-bottom: 2.4rem;
 `
 
 export const Container = styled.div`
