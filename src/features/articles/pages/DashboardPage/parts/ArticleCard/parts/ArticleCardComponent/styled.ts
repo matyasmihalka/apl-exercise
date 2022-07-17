@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { AuthorContainer } from '~/features/articles/components/AuthorContainer'
 import { colors } from '~/features/ui/theme/colors'
 import { typography } from '~/features/ui/theme/typography'
 
@@ -22,14 +23,8 @@ export const StyledH2 = styled.h2`
   color: ${colors.text.base};
 `
 
-export const AuthorContainer = styled.div`
-  ${typography.paragraph.small}
-  color: ${colors.text.secondary};
+export const StyledAuthorContainer = styled(AuthorContainer)`
   margin-bottom: 1.6rem;
-
-  span {
-    margin: 0 0.5rem;
-  }
 `
 
 export const StyledP = styled.p`

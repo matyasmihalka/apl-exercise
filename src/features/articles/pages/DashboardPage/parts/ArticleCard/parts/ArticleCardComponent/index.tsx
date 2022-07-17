@@ -1,19 +1,19 @@
 import CircularProgress from '@mui/material/CircularProgress'
-import { format } from 'date-fns'
 import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
 
+// import { AuthorContainer } from '~/features/articles/components/AuthorContainer'
 import type { ArticleDetailTye, ArticleType } from '~/features/articles/types'
 import { Routes } from '~/features/core/constants/routes'
 
 import {
   ArticleLink,
-  AuthorContainer,
   Comments,
   ImgWrapper,
   StyledArticle,
+  StyledAuthorContainer,
   StyledH2,
   StyledP,
   StyledSection,
@@ -39,19 +39,17 @@ export const ArticleCardComponent: FC<Props> = ({
         layout="fixed"
         alt="cute dog"
         objectFit="cover"
-        // placeholder="blur"
         priority
       />
     </ImgWrapper>
     <StyledSection>
       <StyledH2>{article.title}</StyledH2>
-      <AuthorContainer>
-        John Newmann <span>&nbsp;&bull;</span>{' '}
-        {format(new Date(article.createdAt), 'dd/MM/yyyy')}
-      </AuthorContainer>
+
+      <StyledAuthorContainer createdAt={article.createdAt} />
+
       <StyledP>{article.perex}</StyledP>
       <div>
-        <Link href={Routes.DASHBOARD}>
+        <Link href={`${Routes.ARTICLES}/${article.articleId}`}>
           <ArticleLink>Read whole article</ArticleLink>
         </Link>
         <Comments>

@@ -8,6 +8,7 @@ export const MainContainer = styled.div`
   max-width: ${ScreenSize.large / 10}rem;
   box-sizing: border-box;
   width: 100%;
+  /* height: 100%; */
 
   ${mq.medium} {
     padding: 0 2rem;

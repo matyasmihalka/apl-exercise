@@ -8,5 +8,10 @@
 
   "parserOptions": {
     "project": "./tsconfig.json"
+  },
+  "rules": {
+    "react/require-default-props": [0],
+    "react/sort-comp": "off",
+    "import/extensions": [2, { "json": "always" }]
   }
 }
