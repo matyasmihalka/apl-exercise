@@ -3,9 +3,8 @@ import type { FC } from 'react'
 
 import { Routes } from '~/features/core/constants/routes'
 
+import { InitialsIconMenu } from './parts/InitialsIconMenu'
 import { HeaderItemRight, PrimaryHeaderItemRight, Wrapper } from './styled'
-
-import { InitialsIcon } from '../../../InitialsIcon'
 
 type Props = {
   activeItem: string
@@ -21,7 +20,7 @@ export const AccountInfo: FC<Props> = ({ activeItem }) => {
         <Link href={Routes.CREATE}>Create Article</Link>
       </PrimaryHeaderItemRight>
       <HeaderItemRight>
-        <InitialsIcon initials="M" />
+        <InitialsIconMenu />
       </HeaderItemRight>
     </Wrapper>
   )

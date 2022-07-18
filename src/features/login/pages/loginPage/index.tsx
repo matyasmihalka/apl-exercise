@@ -46,19 +46,14 @@ export const LoginPage: NextPage = () => {
     resolver: yupResolver(LogInSchema),
   })
 
-  const { mutate, data } = useLogin()
+  const { mutate } = useLogin()
   const router = useRouter()
   const [submitError, setSubmitError] = useState<string | null>(null)
 
-  console.log('dataReceived')
-  console.log(data)
-
   const loginHandler = (data: LoginInputs) => {
-    console.log(data)
     // Only submit in case of no errors.
     if (!errors.username && !errors.password) {
       // setIsSubmitting(true)
-      console.log('should be submitted')
       mutate(data, {
         onSuccess: async () => {
           await router.push('/')
