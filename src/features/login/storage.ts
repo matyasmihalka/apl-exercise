@@ -18,3 +18,7 @@ export const setPersistedUser = (username: string) => {
 export const setAccessToken = (accessToken: string) => {
   window.localStorage.setItem('accessToken', accessToken)
 }
+
+export const getAccessToken = () => {
+  return window.localStorage.getItem('accessToken')
+}
