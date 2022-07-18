@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 
+import { colors } from '~/features/ui/theme/colors'
 import { mq } from '~/features/ui/theme/mq'
 import { typography } from '~/features/ui/theme/typography'
 
@@ -26,4 +27,10 @@ export const StyledH1 = styled.h1`
 export const ButtonWrapper = styled.div`
   display: flex;
   justify-content: end;
+`
+
+export const ErrorMessage = styled.p`
+  ${typography.paragraph.small}
+  color: ${colors.accent.error};
+  margin-bottom: 1.6rem;
 `

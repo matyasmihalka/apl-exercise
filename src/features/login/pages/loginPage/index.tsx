@@ -4,12 +4,22 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import TextField from '@mui/material/TextField'
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { Layout } from '~/features/ui/components/Layout'
 
-import { ButtonWrapper, Container, StyledH1, Wrapper } from './styled'
+import {
+  ButtonWrapper,
+  Container,
+  ErrorMessage,
+  StyledH1,
+  Wrapper,
+} from './styled'
+
+import { useLogin } from '../../hooks/useLogin'
 
 const LogInSchema = yup
   .object({
@@ -36,8 +46,28 @@ export const LoginPage: NextPage = () => {
     resolver: yupResolver(LogInSchema),
   })
 
+  const { mutate, data } = useLogin()
+  const router = useRouter()
+  const [submitError, setSubmitError] = useState<string | null>(null)
+
+  console.log('dataReceived')
+  console.log(data)
+
   const loginHandler = (data: LoginInputs) => {
     console.log(data)
+    // Only submit in case of no errors.
+    if (!errors.username && !errors.password) {
+      // setIsSubmitting(true)
+      console.log('should be submitted')
+      mutate(data, {
+        onSuccess: async () => {
+          await router.push('/')
+        },
+        onError: (error) => {
+          setSubmitError(error.message)
+        },
+      })
+    }
   }
   return (
     <Layout>
@@ -46,6 +76,7 @@ export const LoginPage: NextPage = () => {
           <Card>
             <CardContent>
               <StyledH1>Log In</StyledH1>
+              {submitError && <ErrorMessage>{submitError}</ErrorMessage>}
               {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
               <form onSubmit={handleSubmit(loginHandler)} noValidate>
                 <TextField
