@@ -46,7 +46,7 @@ export const LoginPage: NextPage = () => {
     resolver: yupResolver(LogInSchema),
   })
 
-  const { mutate } = useLogin()
+  const { mutate, isLoading } = useLogin()
   const router = useRouter()
   const [submitError, setSubmitError] = useState<string | null>(null)
 
@@ -95,7 +95,12 @@ export const LoginPage: NextPage = () => {
                   helperText={capitalizeFirstLetter(errors?.password?.message)}
                 />
                 <ButtonWrapper>
-                  <Button variant="contained" size="small" type="submit">
+                  <Button
+                    variant="contained"
+                    size="small"
+                    type="submit"
+                    disabled={isLoading}
+                  >
                     Log In
                   </Button>
                 </ButtonWrapper>

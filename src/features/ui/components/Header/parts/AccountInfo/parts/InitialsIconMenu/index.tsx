@@ -16,6 +16,10 @@ export const InitialsIconMenu: FC = () => {
   const { handleLogout, username } = useUserContext()
   const handleClose = () => {
     setAnchorEl(null)
+  }
+
+  const logoutHandler = () => {
+    setAnchorEl(null)
     handleLogout()
   }
 
@@ -39,7 +43,7 @@ export const InitialsIconMenu: FC = () => {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={logoutHandler}>Logout</MenuItem>
       </Menu>
     </div>
   )
