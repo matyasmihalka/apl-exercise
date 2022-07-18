@@ -1,75 +1,55 @@
 import { Button, TextField } from '@mui/material'
 import type { NextPage } from 'next'
-import Image from 'next/image'
 import { useState } from 'react'
 
 import { Layout } from '~/features/ui/components/Layout'
-import { MainContainer } from '~/features/ui/components/MainContainer'
+
+import { ImageUpload } from './parts/ImageUpload'
+import {
+  HeadingWrapper,
+  PositionedMainContainer,
+  StyledH1,
+  StyledP,
+} from './styled'
 
 export const CreateArticlePage: NextPage = () => {
-  const [uploadedImg, setUploadedImg] = useState<File | null>()
-  console.log(uploadedImg)
+  const [uploadedImg, setUploadedImg] = useState<File | null>(null)
+
   return (
     <Layout>
-      <MainContainer>
-        <h1>Create New Article</h1>
+      <PositionedMainContainer>
+        <HeadingWrapper>
+          <StyledH1>Create New Article</StyledH1>
+          <div>
+            <Button
+              variant="contained"
+              form="createForm"
+              type="submit"
+              // size="small"
+            >
+              Publish Article
+            </Button>
+          </div>
+        </HeadingWrapper>
 
-        <Button variant="contained">Publish Article</Button>
-        <form action="">
+        {/* eslint-disable-next-line react/forbid-dom-props */}
+        <form id="createForm" onSubmit={() => console.log('submitted')}>
           <TextField
             // {...register('username')}
             id="title"
             label="Title"
             variant="outlined"
-            sx={{ width: '100%', marginBottom: '1.6rem' }}
+            sx={{ width: '100%', marginBottom: '3.2rem' }}
             type="text"
             // error={!!errors.username}
             // helperText={capitalizeFirstLetter(errors?.username?.message)}
           />
-          <p>Featured Image</p>
-          {/* <input
-            type="file"
-            name="myImage"
-            // onChange={(event) => {
-            //   console.log(event.target.files[0])
-            //   setSelectedImage(event.target.files[0])
-            // }}
-          /> */}
-          {/* <Button variant="contained" color="secondary" size="small">
-            Upload Image
-          </Button> */}
-          {uploadedImg && (
-            <Image
-              src={URL.createObjectURL(uploadedImg)}
-              width="272px"
-              height="244px"
-              layout="fixed"
-              alt="Uploaded dog"
-              objectFit="cover"
-              priority
-            />
-          )}
+          <StyledP>Featured Image</StyledP>
+          <ImageUpload
+            uploadedImg={uploadedImg}
+            setUploadedImg={setUploadedImg}
+          />
 
-          <label>
-            <input
-              //   id="btn-upload"
-              name="btn-upload"
-              style={{ display: 'none' }}
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                e.target.files && setUploadedImg(e.target.files[0])
-              }}
-            />
-            <Button
-              variant="contained"
-              color="secondary"
-              size="small"
-              component="span"
-            >
-              Upload Image
-            </Button>
-          </label>
           <TextField
             id="content"
             label="Content"
@@ -78,7 +58,7 @@ export const CreateArticlePage: NextPage = () => {
             sx={{ width: '100%' }}
           />
         </form>
-      </MainContainer>
+      </PositionedMainContainer>
     </Layout>
   )
 }
