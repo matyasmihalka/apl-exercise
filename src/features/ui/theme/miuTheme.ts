@@ -8,9 +8,13 @@ export const muiTheme = createTheme({
       // Purple and green play nicely together.
       main: colors.accent.primary,
     },
+
     // secondary: {
     //   // This is green.A700 as hex.
     //   main: '#11cb5f',
     // },
+  },
+  typography: {
+    htmlFontSize: 10,
   },
 })

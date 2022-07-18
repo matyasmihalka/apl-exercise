@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 import { colors } from '../../theme/colors'
 import { mq } from '../../theme/mq'
@@ -14,10 +14,24 @@ export const HeaderContainer = styled(MainContainer)`
   align-items: center;
 `
 
-export const HeaderItem = styled.div`
+type HeaderItemProps = {
+  isActive?: boolean
+}
+
+export const HeaderItem = styled.div<HeaderItemProps>`
   margin-right: 1rem;
 
-  color: ${colors.text.base};
+  color: ${colors.text.secondary};
+
+  &:hover {
+    color: ${colors.text.base};
+  }
+
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: ${colors.text.base};
+    `}
 
   ${mq.medium} {
     margin-right: 4rem;

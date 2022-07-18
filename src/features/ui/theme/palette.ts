@@ -22,6 +22,8 @@ export const palette = {
 
   // Accent colors
   blue: '#2B7EFB',
+  lightBlue: '#90caf9',
+  darkRed: '#d32f2f',
   // green: '#22D486',
   // greenDarker: '#20BD78',
   // pink: '#FF4081',
