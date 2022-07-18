@@ -24,6 +24,7 @@ export const colors = {
   accent: {
     primary: palette.blue,
     primaryHover: palette.lightBlue,
+    secondary: palette.grey[500],
     error: palette.darkRed,
     //   primaryHover: palette.greenDarker,
     //   destructive: palette.pink,

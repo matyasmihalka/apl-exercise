@@ -2,6 +2,6 @@ export enum Routes {
   DASHBOARD = '/',
   LOGIN = '/login',
   ARTICLES = '/articles',
-  CREATE = '/create',
+  CREATE = '/articles/create',
   MYARTICLES = '/myarticles',
 }
