@@ -1,15 +1,20 @@
 import { Button } from '@mui/material'
 import Image from 'next/image'
-import type { Dispatch, FC, SetStateAction } from 'react'
+import type { ChangeEvent, Dispatch, FC, SetStateAction } from 'react'
 
 import { HiddenInput, ImgUploadWrapper, ImgWrapper, Separator } from './styled'
 
 type Props = {
   uploadedImg: File | null
   setUploadedImg: Dispatch<SetStateAction<File | null>>
+  handleImageUpload: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export const ImageUpload: FC<Props> = ({ uploadedImg, setUploadedImg }) => {
+export const ImageUpload: FC<Props> = ({
+  uploadedImg,
+  handleImageUpload,
+  setUploadedImg,
+}) => {
   return (
     <ImgUploadWrapper>
       {uploadedImg && (
@@ -32,9 +37,7 @@ export const ImageUpload: FC<Props> = ({ uploadedImg, setUploadedImg }) => {
           name="img-upload"
           type="file"
           accept="image/*"
-          onChange={(e) => {
-            e.target.files && setUploadedImg(e.target.files[0])
-          }}
+          onChange={handleImageUpload}
         />
         {!uploadedImg ? (
           <Button

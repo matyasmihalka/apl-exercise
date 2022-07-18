@@ -2,6 +2,7 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, TextField } from '@mui/material'
 import type { NextPage } from 'next'
+import type { ChangeEvent } from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -45,21 +46,32 @@ export const CreateArticlePage: NextPage = () => {
     resolver: yupResolver(ArticleFromSchema),
   })
 
-  const { mutate: mutateImage, data } = useUploadImage()
+  const { mutate: mutateImage, data: imgData } = useUploadImage()
+
+  const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      setUploadedImg(e.target.files[0])
+      mutateImage(e.target.files[0])
+    }
+  }
 
   const handleForm = (data: ArticleInputTypes) => {
     console.log(data)
     console.log('submitted form')
     if (uploadedImg) {
       mutateImage(uploadedImg)
+      console.log(imgData)
       console.log('aftermutate')
     }
   }
 
-  if (data) {
-    console.log('data from image upload')
-    console.log(data)
-  }
+  console.log('Image data:')
+  console.log(imgData)
+
+  //   if (data) {
+  //     console.log('data from image upload')
+  //     console.log(data)
+  //   }
 
   return (
     <Layout>
@@ -94,6 +106,7 @@ export const CreateArticlePage: NextPage = () => {
           <ImageUpload
             uploadedImg={uploadedImg}
             setUploadedImg={setUploadedImg}
+            handleImageUpload={handleImageUpload}
           />
 
           <TextField
