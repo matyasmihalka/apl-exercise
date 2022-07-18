@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 
+import { UserContextProvider } from '~/features/login/contexts/userContext'
 import { GlobalStyle } from '~/features/ui/theme/global'
 import { muiTheme } from '~/features/ui/theme/miuTheme'
 
@@ -15,7 +16,9 @@ function MyApp({ Component, pageProps }: AppProps) {
       <GlobalStyle />
       <QueryClientProvider client={queryClient}>
         <MUIThemeProvider theme={muiTheme}>
-          <Component {...pageProps} />
+          <UserContextProvider>
+            <Component {...pageProps} />
+          </UserContextProvider>
         </MUIThemeProvider>
 
         <ReactQueryDevtools />

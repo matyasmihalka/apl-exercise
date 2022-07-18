@@ -4,9 +4,9 @@ import TimeAgo from 'react-timeago'
 import { useVoteDown } from '~/features/articles/hooks/useVoteDown'
 import { useVoteUp } from '~/features/articles/hooks/useVoteUp'
 import type { CommentType } from '~/features/articles/types'
+import { InitialsIcon } from '~/features/ui/components/InitialsIcon'
 
 import { DownIcon } from './parts/DownIcon'
-import { InitialsIcon } from './parts/InitialsIcon'
 import { UpIcon } from './parts/UpIcon'
 import {
   ActionsContainer,
