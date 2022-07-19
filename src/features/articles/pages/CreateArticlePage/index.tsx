@@ -17,6 +17,7 @@ import {
   StyledP,
 } from './styled'
 
+import { usePublishArticle } from '../../hooks/usePublishArticle'
 import { useUploadImage } from '../../hooks/useUploadImage'
 
 const ArticleFromSchema = yup
@@ -26,7 +27,7 @@ const ArticleFromSchema = yup
   })
   .required()
 
-type ArticleInputTypes = yup.InferType<typeof ArticleFromSchema>
+export type ArticleInputTypes = yup.InferType<typeof ArticleFromSchema>
 
 function capitalizeFirstLetter(string: string | undefined) {
   if (string) {
@@ -37,6 +38,7 @@ function capitalizeFirstLetter(string: string | undefined) {
 
 export const CreateArticlePage: NextPage = () => {
   const [uploadedImg, setUploadedImg] = useState<File | null>(null)
+  const [imgIdError, setImgIdError] = useState('')
 
   const {
     register,
@@ -47,26 +49,37 @@ export const CreateArticlePage: NextPage = () => {
   })
 
   const { mutate: mutateImage, data: imgData } = useUploadImage()
+  const { mutate: mutateArticle } = usePublishArticle()
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       setUploadedImg(e.target.files[0])
       mutateImage(e.target.files[0])
+      setImgIdError('')
     }
   }
 
   const handleForm = (data: ArticleInputTypes) => {
     console.log(data)
     console.log('submitted form')
-    if (uploadedImg) {
-      mutateImage(uploadedImg)
-      console.log(imgData)
-      console.log('aftermutate')
+
+    if (imgData) {
+      console.log('submitting the nothing')
+      const dataToSubmit = {
+        ...data,
+        perex: 'To be added later',
+        imageId: imgData[0].imageId,
+      }
+      mutateArticle(dataToSubmit)
+    } else {
+      setImgIdError('Image is required')
     }
   }
 
   console.log('Image data:')
   console.log(imgData)
+
+  console.log(imgIdError)
 
   //   if (data) {
   //     console.log('data from image upload')
@@ -107,6 +120,7 @@ export const CreateArticlePage: NextPage = () => {
             uploadedImg={uploadedImg}
             setUploadedImg={setUploadedImg}
             handleImageUpload={handleImageUpload}
+            imgIdError={imgIdError}
           />
 
           <TextField

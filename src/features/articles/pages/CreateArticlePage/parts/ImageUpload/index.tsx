@@ -1,19 +1,28 @@
+/* eslint-disable react/forbid-dom-props */
 import { Button } from '@mui/material'
 import Image from 'next/image'
 import type { ChangeEvent, Dispatch, FC, SetStateAction } from 'react'
 
-import { HiddenInput, ImgUploadWrapper, ImgWrapper, Separator } from './styled'
+import {
+  ErrorText,
+  HiddenInput,
+  ImgUploadWrapper,
+  ImgWrapper,
+  Separator,
+} from './styled'
 
 type Props = {
   uploadedImg: File | null
   setUploadedImg: Dispatch<SetStateAction<File | null>>
   handleImageUpload: (e: ChangeEvent<HTMLInputElement>) => void
+  imgIdError: string
 }
 
 export const ImageUpload: FC<Props> = ({
   uploadedImg,
   handleImageUpload,
   setUploadedImg,
+  imgIdError,
 }) => {
   return (
     <ImgUploadWrapper>
@@ -30,7 +39,6 @@ export const ImageUpload: FC<Props> = ({
           />
         </ImgWrapper>
       )}
-
       {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
       <label>
         <HiddenInput
@@ -67,6 +75,7 @@ export const ImageUpload: FC<Props> = ({
           </Button>
         </>
       )}
+      {imgIdError && <ErrorText>{imgIdError}</ErrorText>}
     </ImgUploadWrapper>
   )
 }

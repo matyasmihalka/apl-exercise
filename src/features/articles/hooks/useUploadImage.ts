@@ -4,13 +4,13 @@ import { useMutation } from 'react-query'
 
 import { privateApi } from '~/features/api'
 
-type ResponseType = {
+export type ResponseType = {
   imageId: string
   name: string
 }
 
 const useUploadImage = () => {
-  const result = useMutation<ResponseType, Error, File>(
+  const result = useMutation<ResponseType[], Error, File>(
     'uploadImage',
     async (file) => {
       const formData = new FormData()
@@ -22,7 +22,7 @@ const useUploadImage = () => {
       }
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-      return (await response.json()) as ResponseType
+      return (await response.json()) as ResponseType[]
     }
     // {
     //   onSuccess: async (event: ArticleType) => {
