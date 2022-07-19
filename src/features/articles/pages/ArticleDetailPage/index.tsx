@@ -17,7 +17,11 @@ export const ArticleDetailPage: NextPage = () => {
   const id = Array.isArray(articleID) ? '' : articleID
   const { articleDetail } = useArticleDetail(id)
   const { imageObjectURL } = useImage(articleDetail?.imageId)
-  const { articles: relatedArticles } = useArticles()
+  const { articles: allArticles } = useArticles()
+
+  const relatedArticles = allArticles
+    .slice(0, 5)
+    .filter((article) => article.articleId !== articleDetail?.articleId)
 
   const img = imageObjectURL ? imageObjectURL : blurredDoggo
 

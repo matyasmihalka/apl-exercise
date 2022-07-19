@@ -6,6 +6,7 @@ import { typography } from '~/features/ui/theme/typography'
 
 export const StyledArticle = styled.article`
   display: flex;
+  margin-bottom: 3.2rem;
 `
 
 export const StyledSection = styled.section`

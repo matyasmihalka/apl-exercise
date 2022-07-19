@@ -36,3 +36,11 @@ export const Container = styled.div`
   padding-bottom: 6rem;
   padding-left: 2.4rem;
 `
+
+export const ArticleWrapper = styled.div`
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${colors.background.dimmed};
+  }
+`
