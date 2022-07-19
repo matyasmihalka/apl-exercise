@@ -12,14 +12,20 @@ const useImage = (id: string | undefined) => {
         throw new Error(`Failed to load image`)
       }
 
-      return await response.blob()
+      const blob = await response.blob()
+
+      const imageObjectURL = URL.createObjectURL(blob)
+
+      return imageObjectURL
     },
     { enabled: !!id }
   )
 
-  const imageObjectURL = result.isSuccess
-    ? URL.createObjectURL(result.data)
-    : ''
+  const imageObjectURL = result.data
+
+  // const imageObjectURL = result.isSuccess
+  //   ? URL.createObjectURL(result.data)
+  //   : ''
 
   return { ...result, imageObjectURL }
 }

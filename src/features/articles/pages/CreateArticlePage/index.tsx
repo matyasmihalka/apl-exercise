@@ -3,6 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, TextField } from '@mui/material'
 import type { NextPage } from 'next'
 import type { ChangeEvent } from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -18,8 +19,11 @@ import {
   StyledP,
 } from './styled'
 
+import { useEditArticle } from '../../hooks/useEditArticle'
+import { useImage } from '../../hooks/useImage'
 import { usePublishArticle } from '../../hooks/usePublishArticle'
 import { useUploadImage } from '../../hooks/useUploadImage'
+import type { ArticleDetailTye, PerexProp } from '../../types'
 
 const ArticleFromSchema = yup
   .object({
@@ -40,9 +44,15 @@ function capitalizeFirstLetter(string: string | undefined) {
   return ''
 }
 
-export const CreateArticlePage: NextPage = () => {
-  const [uploadedImg, setUploadedImg] = useState<File | null>(null)
+type Props = {
+  articleToEdit?: ArticleDetailTye
+}
+
+export const CreateArticlePage: NextPage<Props> = ({ articleToEdit }) => {
+  const [uploadedImgURL, setUploadedImgURL] = useState<string | null>(null)
   const [imgIdError, setImgIdError] = useState('')
+  const [imgId, setImgId] = useState('')
+  const [imgURLChangeTracker, setImgURLChangeTracker] = useState('')
 
   const {
     register,
@@ -52,38 +62,82 @@ export const CreateArticlePage: NextPage = () => {
     resolver: yupResolver(ArticleFromSchema),
   })
 
+  const { imageObjectURL } = useImage(articleToEdit?.imageId)
+
+  // Tracking the change if img URL as it updates with every window focus
+  // we need to tach teh first URL then its controlled with the component state
+  if (imageObjectURL && !imgURLChangeTracker) {
+    setImgURLChangeTracker(imageObjectURL)
+    setUploadedImgURL(imageObjectURL)
+  }
+
+  useEffect(() => {
+    if (articleToEdit) {
+      setImgId(articleToEdit.imageId)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   const { mutate: mutateImage, data: imgData } = useUploadImage()
   const { mutate: mutateArticle } = usePublishArticle()
+  const { mutate: mutateEditArticle } = useEditArticle()
+
+  useEffect(() => {
+    if (imgData) {
+      setImgId(imgData[0].imageId)
+    }
+  }, [imgData])
+
+  const perex = articleToEdit && (JSON.parse(articleToEdit.perex) as PerexProp)
 
   const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setUploadedImg(e.target.files[0])
+      setUploadedImgURL(URL.createObjectURL(e.target.files[0]))
       mutateImage(e.target.files[0])
       setImgIdError('')
     }
   }
 
   const handleForm = (data: ArticleInputTypes) => {
-    console.log(data)
-    console.log('submitted form')
+    if (!articleToEdit) {
+      if (imgId) {
+        const perex = JSON.stringify({
+          perex: data.perex,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        })
 
-    if (imgData) {
-      console.log('submitting')
-      const perex = JSON.stringify({
-        perex: data.perex,
-        firstName: data.firstName,
-        lastName: data.lastName,
-      })
-
-      const dataToSubmit = {
-        title: data.title,
-        perex: perex,
-        content: data.content,
-        imageId: imgData[0].imageId,
+        const dataToSubmit = {
+          title: data.title,
+          perex: perex,
+          content: data.content,
+          imageId: imgId,
+        }
+        mutateArticle(dataToSubmit)
+      } else {
+        setImgIdError('Image is required')
       }
-      mutateArticle(dataToSubmit)
     } else {
-      setImgIdError('Image is required')
+      if (imgId) {
+        const perex = JSON.stringify({
+          perex: data.perex,
+          firstName: data.firstName,
+          lastName: data.lastName,
+        })
+
+        const dataToSubmit = {
+          title: data.title,
+          perex: perex,
+          content: data.content,
+          imageId: imgId,
+        }
+        mutateEditArticle({
+          id: articleToEdit.articleId,
+          article: { ...dataToSubmit },
+        })
+      } else {
+        setImgIdError('Image is required')
+      }
     }
   }
 
@@ -91,14 +145,14 @@ export const CreateArticlePage: NextPage = () => {
     <Layout>
       <PositionedMainContainer>
         <HeadingWrapper>
-          <StyledH1>Create New Article</StyledH1>
+          {articleToEdit ? (
+            <StyledH1>Edit Article</StyledH1>
+          ) : (
+            <StyledH1>Create New Article</StyledH1>
+          )}
+
           <div>
-            <Button
-              variant="contained"
-              form="createForm"
-              type="submit"
-              // size="small"
-            >
+            <Button variant="contained" form="createForm" type="submit">
               Publish Article
             </Button>
           </div>
@@ -115,6 +169,7 @@ export const CreateArticlePage: NextPage = () => {
             type="text"
             error={!!errors.title}
             helperText={capitalizeFirstLetter(errors?.title?.message)}
+            defaultValue={articleToEdit && articleToEdit.title}
           />
           <StyledP>Author details</StyledP>
           <AuthorWrapper>
@@ -125,6 +180,7 @@ export const CreateArticlePage: NextPage = () => {
               error={!!errors.firstName}
               helperText={capitalizeFirstLetter(errors?.firstName?.message)}
               name="firstName"
+              defaultValue={perex && perex.firstName}
             />
             <TextField
               {...register('lastName')}
@@ -133,15 +189,17 @@ export const CreateArticlePage: NextPage = () => {
               error={!!errors.lastName}
               helperText={capitalizeFirstLetter(errors?.lastName?.message)}
               name="lastName"
+              defaultValue={perex && perex.lastName}
             />
           </AuthorWrapper>
 
           <StyledP>Featured Image</StyledP>
           <ImageUpload
-            uploadedImg={uploadedImg}
-            setUploadedImg={setUploadedImg}
+            uploadedImgURL={uploadedImgURL}
+            setUploadedImgURL={setUploadedImgURL}
             handleImageUpload={handleImageUpload}
             imgIdError={imgIdError}
+            setImgId={setImgId}
           />
 
           <TextField
@@ -153,6 +211,7 @@ export const CreateArticlePage: NextPage = () => {
             sx={{ width: '100%', marginBottom: '3.2rem' }}
             error={!!errors.perex}
             helperText={capitalizeFirstLetter(errors?.perex?.message)}
+            defaultValue={perex && perex.perex}
           />
 
           <TextField
@@ -164,6 +223,7 @@ export const CreateArticlePage: NextPage = () => {
             sx={{ width: '100%' }}
             error={!!errors.content}
             helperText={capitalizeFirstLetter(errors?.content?.message)}
+            defaultValue={articleToEdit && articleToEdit.content}
           />
         </form>
       </PositionedMainContainer>
