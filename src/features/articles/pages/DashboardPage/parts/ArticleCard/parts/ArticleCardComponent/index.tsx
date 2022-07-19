@@ -38,17 +38,29 @@ export const ArticleCardComponent: FC<Props> = ({
   return (
     <StyledArticle>
       <ImgWrapper>
-        <Image
-          src={imgURL}
-          width="272px"
-          height="244px"
-          layout="fixed"
-          alt="cute dog"
-          objectFit="cover"
-          priority
-          placeholder="blur"
-          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
-        />
+        {imgURL ? (
+          <Image
+            src={imgURL}
+            width="272px"
+            height="244px"
+            layout="fixed"
+            alt="cute dog"
+            objectFit="cover"
+            priority
+            placeholder="blur"
+            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+          />
+        ) : (
+          <Image
+            src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+            width="272px"
+            height="244px"
+            layout="fixed"
+            alt="blurred placeholder"
+            objectFit="cover"
+            priority
+          />
+        )}
       </ImgWrapper>
       <StyledSection>
         <StyledH2>{article.title}</StyledH2>

@@ -4,7 +4,11 @@ import type { FC } from 'react'
 import ReactMarkdown from 'react-markdown'
 
 import { CommentsSection } from '~/features/articles/components/CommentsSection'
-import type { ArticleDetailTye, ArticleType } from '~/features/articles/types'
+import type {
+  ArticleDetailTye,
+  ArticleType,
+  PerexProp,
+} from '~/features/articles/types'
 
 import { RelatedArticlesComponent } from './parts/RelatedArticlesComponent'
 import {
@@ -26,30 +30,36 @@ export const ArticleDetailComponent: FC<Props> = ({
   article,
   img,
   relatedArticles,
-}) => (
-  <ArticleContainer>
-    <div>
-      <StyledH1>{article.title}</StyledH1>
-      <StyledAuthorContainer createdAt={article.createdAt} />
-      <ImageWrapper>
-        <Image
-          src={img}
-          layout="fill"
-          alt="cute dog"
-          objectFit="cover"
-          priority
+}) => {
+  const perex = JSON.parse(article.perex) as PerexProp
+  return (
+    <ArticleContainer>
+      <div>
+        <StyledH1>{article.title}</StyledH1>
+        <StyledAuthorContainer
+          createdAt={article.createdAt}
+          author={`${perex.firstName} ${perex.lastName}`}
         />
-      </ImageWrapper>
-      <StyledDiv>
-        <ReactMarkdown>{article.content}</ReactMarkdown>
-      </StyledDiv>
+        <ImageWrapper>
+          <Image
+            src={img}
+            layout="fill"
+            alt="cute dog"
+            objectFit="cover"
+            priority
+          />
+        </ImageWrapper>
+        <StyledDiv>
+          <ReactMarkdown>{article.content}</ReactMarkdown>
+        </StyledDiv>
 
-      <StyledH2>Comments ({article.comments.length})</StyledH2>
-      <CommentsSection
-        comments={article.comments}
-        articleID={article.articleId}
-      />
-    </div>
-    <RelatedArticlesComponent articles={relatedArticles} />
-  </ArticleContainer>
-)
+        <StyledH2>Comments ({article.comments.length})</StyledH2>
+        <CommentsSection
+          comments={article.comments}
+          articleID={article.articleId}
+        />
+      </div>
+      <RelatedArticlesComponent articles={relatedArticles} />
+    </ArticleContainer>
+  )
+}
