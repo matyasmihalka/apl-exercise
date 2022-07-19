@@ -8,6 +8,7 @@ import { useArticles } from '~/features/articles/hooks/useArticles'
 import type { PerexProp } from '~/features/articles/types'
 import { Routes } from '~/features/core/constants/routes'
 
+import { CommentsNumber } from './parts/CommentsNumber'
 import { DeleteAction } from './parts/DeleteAction'
 import { EditIcon } from './parts/EditIcon'
 import { TableContainer, TableWrapper } from './styled'
@@ -24,6 +25,9 @@ const columns: GridColDef[] = [
     field: 'comments',
     headerName: '# of comments',
     width: 160,
+    renderCell: (params) => {
+      return <CommentsNumber id={params.id as string} />
+    },
   },
   {
     field: 'id',
@@ -54,7 +58,7 @@ export const DataTable = () => {
       title: article.title,
       perex: perex.perex,
       author: `${perex.firstName} ${perex.lastName}`,
-      comments: 'added later',
+      comments: article.articleId,
       id: article.articleId,
     }
   })

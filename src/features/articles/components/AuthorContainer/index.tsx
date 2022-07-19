@@ -6,12 +6,17 @@ import { StyledDiv } from './styled'
 type Props = {
   createdAt: string
   className?: string
+  author: string
 }
 
-export const AuthorContainer: FC<Props> = ({ createdAt, className }) => (
+export const AuthorContainer: FC<Props> = ({
+  createdAt,
+  className,
+  author,
+}) => (
   <StyledDiv className={className}>
     {' '}
-    John Newmann <span>&nbsp;&bull;</span>{' '}
+    {author} <span>&nbsp;&bull;</span>{' '}
     {format(new Date(createdAt), 'dd/MM/yyyy')}
   </StyledDiv>
 )

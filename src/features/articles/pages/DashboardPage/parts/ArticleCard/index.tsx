@@ -15,6 +15,9 @@ export const ArticleCard: FC<Props> = ({ article }) => {
   const { imageObjectURL } = useImage(article.imageId)
   const { articleDetail } = useArticleDetail(article.articleId)
   const img = imageObjectURL ? imageObjectURL : blurredDoggo
+  // const img = imageObjectURL
+  //   ? imageObjectURL
+  //   : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='
 
   return (
     <ArticleCardComponent

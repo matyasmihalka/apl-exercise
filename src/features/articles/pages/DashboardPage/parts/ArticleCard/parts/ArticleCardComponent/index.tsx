@@ -5,7 +5,11 @@ import Link from 'next/link'
 import type { FC } from 'react'
 
 // import { AuthorContainer } from '~/features/articles/components/AuthorContainer'
-import type { ArticleDetailTye, ArticleType } from '~/features/articles/types'
+import type {
+  ArticleDetailTye,
+  ArticleType,
+  PerexProp,
+} from '~/features/articles/types'
 import { Routes } from '~/features/core/constants/routes'
 
 import {
@@ -29,38 +33,46 @@ export const ArticleCardComponent: FC<Props> = ({
   article,
   imgURL,
   articleDetail,
-}) => (
-  <StyledArticle>
-    <ImgWrapper>
-      <Image
-        src={imgURL}
-        width="272px"
-        height="244px"
-        layout="fixed"
-        alt="cute dog"
-        objectFit="cover"
-        priority
-      />
-    </ImgWrapper>
-    <StyledSection>
-      <StyledH2>{article.title}</StyledH2>
+}) => {
+  const perex = JSON.parse(article.perex) as PerexProp
+  return (
+    <StyledArticle>
+      <ImgWrapper>
+        <Image
+          src={imgURL}
+          width="272px"
+          height="244px"
+          layout="fixed"
+          alt="cute dog"
+          objectFit="cover"
+          priority
+          placeholder="blur"
+          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII="
+        />
+      </ImgWrapper>
+      <StyledSection>
+        <StyledH2>{article.title}</StyledH2>
 
-      <StyledAuthorContainer createdAt={article.createdAt} />
+        <StyledAuthorContainer
+          createdAt={article.createdAt}
+          author={`${perex.firstName} ${perex.lastName}`}
+        />
 
-      <StyledP>{article.perex}</StyledP>
-      <div>
-        <Link href={`${Routes.ARTICLES}/${article.articleId}`}>
-          <ArticleLink>Read whole article</ArticleLink>
-        </Link>
-        <Comments>
-          {articleDetail ? (
-            articleDetail.comments.length
-          ) : (
-            <CircularProgress size={10} color="primary" />
-          )}{' '}
-          Comments
-        </Comments>
-      </div>
-    </StyledSection>
-  </StyledArticle>
-)
+        <StyledP>{perex.perex}</StyledP>
+        <div>
+          <Link href={`${Routes.ARTICLES}/${article.articleId}`}>
+            <ArticleLink>Read whole article</ArticleLink>
+          </Link>
+          <Comments>
+            {articleDetail ? (
+              articleDetail.comments.length
+            ) : (
+              <CircularProgress size={10} color="primary" />
+            )}{' '}
+            Comments
+          </Comments>
+        </div>
+      </StyledSection>
+    </StyledArticle>
+  )
+}
