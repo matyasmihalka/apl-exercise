@@ -11,6 +11,7 @@ import { Layout } from '~/features/ui/components/Layout'
 
 import { ImageUpload } from './parts/ImageUpload'
 import {
+  AuthorWrapper,
   HeadingWrapper,
   PositionedMainContainer,
   StyledH1,
@@ -23,7 +24,10 @@ import { useUploadImage } from '../../hooks/useUploadImage'
 const ArticleFromSchema = yup
   .object({
     title: yup.string().min(3).max(50).required(),
-    content: yup.string().min(20).max(2000).required(),
+    content: yup.string().min(20).max(3000).required(),
+    perex: yup.string().min(10).max(300).required(),
+    firstName: yup.string().min(3).required(),
+    lastName: yup.string().min(3).required(),
   })
   .required()
 
@@ -64,10 +68,17 @@ export const CreateArticlePage: NextPage = () => {
     console.log('submitted form')
 
     if (imgData) {
-      console.log('submitting the nothing')
+      console.log('submitting')
+      const perex = JSON.stringify({
+        perex: data.perex,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      })
+
       const dataToSubmit = {
-        ...data,
-        perex: 'To be added later',
+        title: data.title,
+        perex: perex,
+        content: data.content,
         imageId: imgData[0].imageId,
       }
       mutateArticle(dataToSubmit)
@@ -75,16 +86,6 @@ export const CreateArticlePage: NextPage = () => {
       setImgIdError('Image is required')
     }
   }
-
-  console.log('Image data:')
-  console.log(imgData)
-
-  console.log(imgIdError)
-
-  //   if (data) {
-  //     console.log('data from image upload')
-  //     console.log(data)
-  //   }
 
   return (
     <Layout>
@@ -115,6 +116,26 @@ export const CreateArticlePage: NextPage = () => {
             error={!!errors.title}
             helperText={capitalizeFirstLetter(errors?.title?.message)}
           />
+          <StyledP>Author details</StyledP>
+          <AuthorWrapper>
+            <TextField
+              {...register('firstName')}
+              label="First Name"
+              type="text"
+              error={!!errors.firstName}
+              helperText={capitalizeFirstLetter(errors?.firstName?.message)}
+              name="firstName"
+            />
+            <TextField
+              {...register('lastName')}
+              label="Last Name"
+              type="text"
+              error={!!errors.lastName}
+              helperText={capitalizeFirstLetter(errors?.lastName?.message)}
+              name="lastName"
+            />
+          </AuthorWrapper>
+
           <StyledP>Featured Image</StyledP>
           <ImageUpload
             uploadedImg={uploadedImg}
@@ -124,9 +145,20 @@ export const CreateArticlePage: NextPage = () => {
           />
 
           <TextField
+            {...register('perex')}
+            id="perex"
+            label="Short article description"
+            multiline
+            rows={3}
+            sx={{ width: '100%', marginBottom: '3.2rem' }}
+            error={!!errors.perex}
+            helperText={capitalizeFirstLetter(errors?.perex?.message)}
+          />
+
+          <TextField
             {...register('content')}
             id="content"
-            label="Content"
+            label="Content in Markdown"
             multiline
             rows={20}
             sx={{ width: '100%' }}
