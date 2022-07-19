@@ -41,7 +41,6 @@ export const ArticleDetailComponent: FC<Props> = ({
         />
       </ImageWrapper>
       <StyledDiv>
-        <ReactMarkdown>*React-Markdown* is **Awesome**</ReactMarkdown>
         <ReactMarkdown>{article.content}</ReactMarkdown>
       </StyledDiv>
 

@@ -5,8 +5,10 @@ import { colors } from './colors'
 export const muiTheme = createTheme({
   palette: {
     primary: {
-      // Purple and green play nicely together.
       main: colors.accent.primary,
+    },
+    secondary: {
+      main: colors.accent.secondary,
     },
 
     // secondary: {

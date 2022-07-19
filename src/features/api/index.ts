@@ -1,5 +1,7 @@
 import ky from 'ky'
 
+import { getAccessToken } from '../login/storage'
+
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
 const API_URL = process.env.NEXT_PUBLIC_API_URL
 
@@ -18,4 +20,15 @@ const publicApi = ky.create({
   },
 })
 
-export { publicApi }
+const privateApi = publicApi.extend({
+  hooks: {
+    beforeRequest: [
+      (request) => {
+        const accessToken = getAccessToken()
+        accessToken && request.headers.set('Authorization', accessToken)
+      },
+    ],
+  },
+})
+
+export { publicApi, privateApi }

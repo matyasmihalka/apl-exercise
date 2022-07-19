@@ -83,6 +83,10 @@ export const typography = {
   //   `,
   // },
   paragraph: {
+    verySmall: css`
+      ${allParagraphsStyle}
+      font-size: 1.2rem;
+    `,
     small: css`
       ${allParagraphsStyle}
       font-size: 1.4rem;
