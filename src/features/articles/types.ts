@@ -34,3 +34,9 @@ export type ArticleDetailTye = {
   lastUpdatedAt: string
   comments: CommentType[]
 }
+
+export type PerexProp = {
+  perex: string
+  firstName: string
+  lastName: string
+}
