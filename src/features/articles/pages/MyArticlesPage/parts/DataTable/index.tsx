@@ -14,7 +14,17 @@ import { EditIcon } from './parts/EditIcon'
 import { TableContainer, TableWrapper } from './styled'
 
 const columns: GridColDef[] = [
-  { field: 'title', headerName: 'Article title', width: 200 },
+  {
+    field: 'title',
+    headerName: 'Article title',
+    width: 200,
+    renderCell: (params) => {
+      return (
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+        <Link href={`${Routes.ARTICLES}/${params.id}`}>{params.row.title}</Link>
+      )
+    },
+  },
   { field: 'perex', headerName: 'Perex', width: 300 },
   {
     field: 'author',
@@ -73,7 +83,7 @@ export const DataTable = () => {
             columns={columns}
             pageSize={5}
             rowsPerPageOptions={[5]}
-            checkboxSelection
+            disableSelectionOnClick
           />
         </div>
       </TableWrapper>
