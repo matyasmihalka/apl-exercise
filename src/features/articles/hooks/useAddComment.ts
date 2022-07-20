@@ -1,6 +1,6 @@
 // import { useRouter } from 'next/router'
 
-import { useMutation } from 'react-query'
+import { useMutation, useQueryClient } from 'react-query'
 
 import { privateApi } from '~/features/api'
 
@@ -12,7 +12,9 @@ export type CommentInput = {
   articleId: string
 }
 
-const useAddComment = () => {
+const useAddComment = (articleId: string) => {
+  const queryClient = useQueryClient()
+
   const result = useMutation<CommentType, Error, CommentInput>(
     'addComment',
     async (comment) => {
@@ -26,12 +28,12 @@ const useAddComment = () => {
 
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       return (await response.json()) as CommentType
+    },
+    {
+      onSuccess: async () => {
+        await queryClient.invalidateQueries(['articles', 'detail', articleId])
+      },
     }
-    // {
-    //   onSuccess: async () => {
-    //     await router.push(Routes.DASHBOARD)
-    //   },
-    // }
   )
 
   //   console.log('Response from image upload')

@@ -14,6 +14,6 @@ export const CommentWrapper = styled.div`
   margin-bottom: 1.5rem;
 `
 
-export const StyledForm = styled.div`
+export const StyledForm = styled.form`
   margin-bottom: 2.4rem;
 `

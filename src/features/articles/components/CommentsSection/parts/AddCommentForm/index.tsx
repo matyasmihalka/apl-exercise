@@ -34,22 +34,22 @@ export const AddCommentForm: FC<Props> = ({ articleId }) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<CommentInputTypes>({
     resolver: yupResolver(CommentFromSchema),
   })
 
-  const { mutate, isSuccess } = useAddComment()
+  const { mutate, isSuccess, isLoading } = useAddComment(articleId)
 
   useEffect(() => {
     if (isSuccess) {
       console.log(isSuccess)
+      reset()
     }
-  }, [isSuccess])
+  }, [isSuccess, reset])
 
   const submitFormHandler = (data: CommentInputTypes) => {
-    console.log('Submitting')
-    console.log(data)
     const dataToSubmit = {
       author: `${data.firstName} ${data.lastName}`,
       content: data.content,
@@ -97,7 +97,7 @@ export const AddCommentForm: FC<Props> = ({ articleId }) => {
           error={!!errors.content}
           helperText={capitalizeFirstLetter(errors?.content?.message)}
         />
-        <Button variant="contained" type="submit">
+        <Button variant="contained" type="submit" disabled={isLoading}>
           Comment
         </Button>
       </CommentWrapper>
