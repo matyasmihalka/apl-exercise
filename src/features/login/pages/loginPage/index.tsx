@@ -20,6 +20,7 @@ import {
 } from './styled'
 
 import { useUserContext } from '../../contexts/userContext'
+import { withPublicRoute } from '../../hocs/withPublicRoute'
 import { useLogin } from '../../hooks/useLogin'
 
 const LogInSchema = yup
@@ -120,3 +121,5 @@ export const LoginPage: NextPage = () => {
     </Layout>
   )
 }
+
+export const PublicLoginPage = withPublicRoute(LoginPage)

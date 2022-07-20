@@ -1,1 +1,1 @@
-export { MyArticles as default } from '~/features/articles/pages/MyArticlesPage'
+export { PrivateMyArticles as default } from '~/features/articles/pages/MyArticlesPage'

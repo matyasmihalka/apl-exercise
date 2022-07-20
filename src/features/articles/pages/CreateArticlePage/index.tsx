@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
+import { withPrivateRoute } from '~/features/login/hocs/withPrivateRoute'
 import { Layout } from '~/features/ui/components/Layout'
 
 import { ImageUpload } from './parts/ImageUpload'
@@ -170,3 +171,5 @@ export const CreateArticlePage: NextPage = () => {
     </Layout>
   )
 }
+
+export const PrivateCreateArticlePage = withPrivateRoute(CreateArticlePage)

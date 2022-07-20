@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 
+import { withPrivateRoute } from '~/features/login/hocs/withPrivateRoute'
 import { Layout } from '~/features/ui/components/Layout'
 
 export const EditArticlePage: NextPage = () => {
@@ -9,3 +10,5 @@ export const EditArticlePage: NextPage = () => {
     </Layout>
   )
 }
+
+export const PrivateEditArticlePage = withPrivateRoute(EditArticlePage)
