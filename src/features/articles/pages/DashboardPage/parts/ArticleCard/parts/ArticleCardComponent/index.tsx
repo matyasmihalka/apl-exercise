@@ -1,5 +1,4 @@
 import CircularProgress from '@mui/material/CircularProgress'
-import type { StaticImageData } from 'next/image'
 import Image from 'next/image'
 import Link from 'next/link'
 import type { FC } from 'react'
@@ -25,7 +24,7 @@ import {
 
 export type Props = {
   article: ArticleType
-  imgURL: string | StaticImageData
+  imgURL: string | undefined
   articleDetail: ArticleDetailTye | undefined
 }
 
