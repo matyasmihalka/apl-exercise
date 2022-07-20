@@ -38,6 +38,9 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
     voteDownMutate(comment.commentId)
   }
 
+  const commentDate = new Date(comment.createdAt)
+  commentDate.setHours(commentDate.getHours() + 2)
+
   return (
     <CommentContainer>
       <div>
@@ -48,7 +51,7 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
         <AuthorRow>
           <h3>{comment.author}</h3>
           <span>
-            <TimeAgo date={comment.createdAt} />
+            <TimeAgo date={commentDate} />
           </span>
         </AuthorRow>
         <StyledP>{comment.content}</StyledP>
