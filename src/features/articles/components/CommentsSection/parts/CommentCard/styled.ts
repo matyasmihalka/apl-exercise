@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-import { StyleReset } from '~/features/ui/components/StyleReset'
 import { colors } from '~/features/ui/theme/colors'
 import { typography } from '~/features/ui/theme/typography'
 
@@ -35,26 +34,11 @@ export const StyledP = styled.p`
 export const LeftContainer = styled.div`
   margin-left: 2.4rem;
 `
-export const Button = styled.button`
-  ${StyleReset}
-
-  width: 40px;
-  border-right: 1px ${colors.border.light} solid;
-
-  &:not(:disabled) {
-    cursor: pointer;
-
-    &:hover,
-    &:focus {
-      background-color: ${colors.border.light};
-    }
-  }
-`
 
 export const ActionsContainer = styled.div`
   color: ${colors.text.base};
 
-  span {
+  > span {
     border-right: 1px ${colors.border.light} solid;
     padding-right: 0.8rem;
   }
