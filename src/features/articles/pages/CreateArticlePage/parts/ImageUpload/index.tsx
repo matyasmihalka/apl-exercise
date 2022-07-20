@@ -12,24 +12,26 @@ import {
 } from './styled'
 
 type Props = {
-  uploadedImg: File | null
-  setUploadedImg: Dispatch<SetStateAction<File | null>>
+  uploadedImgURL: string | null
+  setUploadedImgURL: Dispatch<SetStateAction<string | null>>
   handleImageUpload: (e: ChangeEvent<HTMLInputElement>) => void
   imgIdError: string
+  setImgId: Dispatch<SetStateAction<string>>
 }
 
 export const ImageUpload: FC<Props> = ({
-  uploadedImg,
+  uploadedImgURL,
   handleImageUpload,
-  setUploadedImg,
+  setUploadedImgURL,
   imgIdError,
+  setImgId,
 }) => {
   return (
     <ImgUploadWrapper>
-      {uploadedImg && (
+      {uploadedImgURL && (
         <ImgWrapper>
           <Image
-            src={URL.createObjectURL(uploadedImg)}
+            src={uploadedImgURL}
             width="100%"
             height="100%"
             layout="responsive"
@@ -47,7 +49,7 @@ export const ImageUpload: FC<Props> = ({
           accept="image/*"
           onChange={handleImageUpload}
         />
-        {!uploadedImg ? (
+        {!uploadedImgURL ? (
           <Button
             variant="contained"
             color="secondary"
@@ -62,14 +64,17 @@ export const ImageUpload: FC<Props> = ({
           </Button>
         )}
       </label>
-      {uploadedImg && (
+      {uploadedImgURL && (
         <>
           <Separator />
           <Button
             variant="text"
             color="error"
             size="small"
-            onClick={() => setUploadedImg(null)}
+            onClick={() => {
+              setUploadedImgURL(null)
+              setImgId('')
+            }}
           >
             Delete
           </Button>
