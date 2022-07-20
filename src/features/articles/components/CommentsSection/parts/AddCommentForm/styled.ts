@@ -1,5 +1,7 @@
 import styled from 'styled-components'
 
+import { colors } from '~/features/ui/theme/colors'
+
 export const AuthorWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -16,4 +18,7 @@ export const CommentWrapper = styled.div`
 
 export const StyledForm = styled.form`
   margin-bottom: 2.4rem;
+`
+export const ErrorP = styled.p`
+  color: ${colors.accent.error};
 `

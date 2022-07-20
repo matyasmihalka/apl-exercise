@@ -14,6 +14,7 @@ import { Layout } from '~/features/ui/components/Layout'
 import { ImageUpload } from './parts/ImageUpload'
 import {
   AuthorWrapper,
+  ErrorP,
   HeadingWrapper,
   PositionedMainContainer,
   StyledH1,
@@ -54,6 +55,7 @@ export const CreateArticlePage: NextPage<Props> = ({ articleToEdit }) => {
   const [imgIdError, setImgIdError] = useState('')
   const [imgId, setImgId] = useState('')
   const [imgURLChangeTracker, setImgURLChangeTracker] = useState('')
+  const [serverError, setServerError] = useState('')
 
   const {
     register,
@@ -114,7 +116,11 @@ export const CreateArticlePage: NextPage<Props> = ({ articleToEdit }) => {
           content: data.content,
           imageId: imgId,
         }
-        mutateArticle(dataToSubmit)
+        mutateArticle(dataToSubmit, {
+          onError: (error) => {
+            setServerError(error.message)
+          },
+        })
       } else {
         setImgIdError('Image is required')
       }
@@ -132,10 +138,17 @@ export const CreateArticlePage: NextPage<Props> = ({ articleToEdit }) => {
           content: data.content,
           imageId: imgId,
         }
-        mutateEditArticle({
-          id: articleToEdit.articleId,
-          article: { ...dataToSubmit },
-        })
+        mutateEditArticle(
+          {
+            id: articleToEdit.articleId,
+            article: { ...dataToSubmit },
+          },
+          {
+            onError: (error) => {
+              setServerError(error.message)
+            },
+          }
+        )
       } else {
         setImgIdError('Image is required')
       }
@@ -158,6 +171,7 @@ export const CreateArticlePage: NextPage<Props> = ({ articleToEdit }) => {
             </Button>
           </div>
         </HeadingWrapper>
+        {serverError && <ErrorP>{serverError}</ErrorP>}
 
         {/* eslint-disable-next-line @typescript-eslint/no-misused-promises */}
         <form id="createForm" onSubmit={handleSubmit(handleForm)}>

@@ -35,3 +35,7 @@ export const AuthorWrapper = styled.div`
   gap: 1.5rem;
   margin-bottom: 3.2rem;
 `
+
+export const ErrorP = styled.p`
+  color: ${colors.accent.error};
+`

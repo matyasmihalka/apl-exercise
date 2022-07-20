@@ -1,13 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, TextField } from '@mui/material'
 import type { FC } from 'react'
-import { useEffect } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
 import { useAddComment } from '~/features/articles/hooks/useAddComment'
 
-import { AuthorWrapper, CommentWrapper, StyledForm } from './styled'
+import { AuthorWrapper, CommentWrapper, ErrorP, StyledForm } from './styled'
 
 const CommentFromSchema = yup
   .object({
@@ -40,14 +40,8 @@ export const AddCommentForm: FC<Props> = ({ articleId }) => {
     resolver: yupResolver(CommentFromSchema),
   })
 
-  const { mutate, isSuccess, isLoading } = useAddComment(articleId)
-
-  useEffect(() => {
-    if (isSuccess) {
-      console.log(isSuccess)
-      reset()
-    }
-  }, [isSuccess, reset])
+  const { mutate, isLoading } = useAddComment(articleId)
+  const [serverError, setServerError] = useState('')
 
   const submitFormHandler = (data: CommentInputTypes) => {
     const dataToSubmit = {
@@ -55,12 +49,20 @@ export const AddCommentForm: FC<Props> = ({ articleId }) => {
       content: data.content,
       articleId: articleId,
     }
-    mutate(dataToSubmit)
+    mutate(dataToSubmit, {
+      onSuccess: () => {
+        reset()
+      },
+      onError: (error) => {
+        setServerError(error.message)
+      },
+    })
   }
 
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <StyledForm onSubmit={handleSubmit(submitFormHandler)}>
+      {serverError && <ErrorP>{serverError}</ErrorP>}
       <AuthorWrapper>
         <TextField
           {...register('firstName')}
