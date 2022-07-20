@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import TextField from '@mui/material/TextField'
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 
@@ -19,6 +19,7 @@ import {
   Wrapper,
 } from './styled'
 
+import { useUserContext } from '../../contexts/userContext'
 import { useLogin } from '../../hooks/useLogin'
 
 const LogInSchema = yup
@@ -49,6 +50,13 @@ export const LoginPage: NextPage = () => {
   const { mutate, isLoading } = useLogin()
   const router = useRouter()
   const [submitError, setSubmitError] = useState<string | null>(null)
+  const { handleLogout } = useUserContext()
+
+  useEffect(() => {
+    if (router.query?.from === 'unauthorized') {
+      handleLogout()
+    }
+  }, [handleLogout, router.query?.from])
 
   const loginHandler = (data: LoginInputs) => {
     // Only submit in case of no errors.

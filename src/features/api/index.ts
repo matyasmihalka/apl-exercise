@@ -1,5 +1,7 @@
 import ky from 'ky'
+import router from 'next/router'
 
+import { Routes } from '../core/constants/routes'
 import { getAccessToken } from '../login/storage'
 
 const API_KEY = process.env.NEXT_PUBLIC_API_KEY
@@ -26,6 +28,18 @@ const privateApi = publicApi.extend({
       (request) => {
         const accessToken = getAccessToken()
         accessToken && request.headers.set('Authorization', accessToken)
+      },
+    ],
+    afterResponse: [
+      (request, options, response) => {
+        if (response.status === 403 || response.status === 401) {
+          void router.replace({
+            pathname: Routes.LOGIN,
+            // we need to clear persisted stuff and context
+            query: { from: 'unauthorized' },
+          })
+          return response
+        }
       },
     ],
   },
