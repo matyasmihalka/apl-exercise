@@ -69,7 +69,6 @@ export const LoginPage: NextPage = () => {
         },
         onError: (error) => {
           setSubmitError(error.message)
-          console.log(error)
         },
       })
     }

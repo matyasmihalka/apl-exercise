@@ -24,18 +24,7 @@ const useUploadImage = () => {
       // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
       return (await response.json()) as ResponseType[]
     }
-    // {
-    //   onSuccess: async (event: ArticleType) => {
-    //     console.log(event)
-    //     await privateApi.post(`/events/${event.id}/attendees/me`)
-
-    //     await router.push(Routes.DASHBOARD)
-    //   },
-    // }
   )
-
-  //   console.log('Response from image upload')
-  //   console.log(result)
 
   return result
 }

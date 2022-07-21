@@ -36,9 +36,6 @@ const useAddComment = (articleId: string) => {
     }
   )
 
-  //   console.log('Response from image upload')
-  //   console.log(result)
-
   return result
 }
 
