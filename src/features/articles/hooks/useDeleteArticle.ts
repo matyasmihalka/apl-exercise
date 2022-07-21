@@ -31,10 +31,6 @@ const useDeleteArticle = () => {
       },
     }
   )
-
-  //   console.log('Response from image upload')
-  //   console.log(result)
-
   return result
 }
 

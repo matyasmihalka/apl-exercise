@@ -45,7 +45,7 @@ export const AddCommentForm: FC<Props> = ({ articleId }) => {
 
   const submitFormHandler = (data: CommentInputTypes) => {
     const dataToSubmit = {
-      author: `${data.firstName} ${data.lastName}`,
+      author: `${data.firstName.trim()} ${data.lastName.trim()}`,
       content: data.content,
       articleId: articleId,
     }
