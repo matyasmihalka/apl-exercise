@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { colors } from '~/features/ui/theme/colors'
 import { typography } from '~/features/ui/theme/typography'
 
-export const CommentContainer = styled.div`
+export const CommentContainer = styled.li`
   display: flex;
   margin-bottom: 2.4rem;
 `

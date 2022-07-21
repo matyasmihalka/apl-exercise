@@ -71,7 +71,7 @@ export const ArticleCardComponent: FC<Props> = ({
 
         <StyledP>{perex.perex}</StyledP>
         <div>
-          <Link href={`${Routes.ARTICLES}/${article.articleId}`}>
+          <Link href={`${Routes.ARTICLES}/${article.articleId}`} passHref>
             <ArticleLink>Read whole article</ArticleLink>
           </Link>
           <Comments>

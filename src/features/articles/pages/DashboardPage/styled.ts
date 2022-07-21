@@ -11,7 +11,7 @@ export const StyledH1 = styled.h1`
 export const PageLayout = styled.div`
   ${mq.large} {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 5fr 2fr;
   }
 `
 
@@ -21,4 +21,9 @@ export const StyledAside = styled.aside`
   ${mq.large} {
     display: block;
   }
+`
+
+export const UList = styled.ul`
+  list-style: none;
+  padding: 0;
 `

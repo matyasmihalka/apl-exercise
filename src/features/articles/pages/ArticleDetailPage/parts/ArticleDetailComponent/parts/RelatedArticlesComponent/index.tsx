@@ -11,6 +11,7 @@ import {
   StyledH3,
   StyledH4,
   StyledP,
+  UList,
 } from './styled'
 
 type Props = {
@@ -22,20 +23,21 @@ export const RelatedArticlesComponent: FC<Props> = ({ articles }) => {
     <StyledAside>
       <Container>
         <StyledH3>Related Articles</StyledH3>
-        {articles.map((article) => {
-          const perex = JSON.parse(article.perex) as PerexProp
-          return (
-            <Link
-              href={`${Routes.ARTICLES}/${article.articleId}`}
-              key={article.articleId}
-            >
-              <ArticleWrapper>
-                <StyledH4>{article.title}</StyledH4>
-                <StyledP>{perex.perex}</StyledP>
-              </ArticleWrapper>
-            </Link>
-          )
-        })}
+        <UList>
+          {articles.map((article) => {
+            const perex = JSON.parse(article.perex) as PerexProp
+            return (
+              <li key={article.articleId}>
+                <Link href={`${Routes.ARTICLES}/${article.articleId}`} passHref>
+                  <ArticleWrapper>
+                    <StyledH4>{article.title}</StyledH4>
+                    <StyledP>{perex.perex}</StyledP>
+                  </ArticleWrapper>
+                </Link>
+              </li>
+            )
+          })}
+        </UList>
       </Container>
     </StyledAside>
   )

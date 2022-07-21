@@ -5,7 +5,7 @@ import { Layout } from '~/features/ui/components/Layout'
 import { MainContainer } from '~/features/ui/components/MainContainer'
 
 import { ArticleCard } from './parts/ArticleCard'
-import { PageLayout, StyledH1 } from './styled'
+import { PageLayout, StyledH1, UList } from './styled'
 
 import { useArticles } from '../../hooks/useArticles'
 
@@ -19,12 +19,13 @@ export const DashboardPage: NextPage = () => {
     <Layout>
       <MainContainer>
         <PageLayout>
-          <div>
+          <UList>
             <StyledH1>Recent Articles</StyledH1>
             {articles.map((article) => (
               <ArticleCard key={article.articleId} article={article} />
             ))}
-          </div>
+          </UList>
+
           <aside />
         </PageLayout>
       </MainContainer>

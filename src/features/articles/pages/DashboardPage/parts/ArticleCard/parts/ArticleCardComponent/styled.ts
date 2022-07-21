@@ -4,7 +4,7 @@ import { AuthorContainer } from '~/features/articles/components/AuthorContainer'
 import { colors } from '~/features/ui/theme/colors'
 import { typography } from '~/features/ui/theme/typography'
 
-export const StyledArticle = styled.article`
+export const StyledArticle = styled.li`
   display: flex;
   margin-bottom: 3.2rem;
 `
