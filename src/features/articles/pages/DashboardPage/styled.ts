@@ -22,3 +22,8 @@ export const StyledAside = styled.aside`
     display: block;
   }
 `
+
+export const UList = styled.ul`
+  list-style: none;
+  padding: 0;
+`

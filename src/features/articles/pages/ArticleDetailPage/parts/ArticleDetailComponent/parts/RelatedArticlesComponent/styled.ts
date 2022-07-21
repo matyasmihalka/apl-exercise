@@ -37,10 +37,15 @@ export const Container = styled.div`
   padding-left: 2.4rem;
 `
 
-export const ArticleWrapper = styled.div`
+export const ArticleWrapper = styled.a`
   cursor: pointer;
 
   &:hover {
     background-color: ${colors.background.dimmed};
   }
+`
+
+export const UList = styled.ul`
+  list-style: none;
+  padding: 0;
 `
