@@ -19,9 +19,8 @@ export const DashboardPage: NextPage = () => {
     <Layout>
       <MainContainer>
         <PageLayout>
-          <StyledH1>Recent Articles</StyledH1>
-
           <UList>
+            <StyledH1>Recent Articles</StyledH1>
             {articles.map((article) => (
               <ArticleCard key={article.articleId} article={article} />
             ))}
