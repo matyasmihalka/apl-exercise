@@ -1,1 +1,1 @@
-export { EditArticlePage as default } from '~/features/articles/pages/EditArticlePage'
+export { PrivateEditArticlePage as default } from '~/features/articles/pages/EditArticlePage'

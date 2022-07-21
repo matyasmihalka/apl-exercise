@@ -1,3 +1,4 @@
+import { Button } from '@mui/material'
 import type { FC } from 'react'
 import TimeAgo from 'react-timeago'
 
@@ -11,7 +12,7 @@ import { UpIcon } from './parts/UpIcon'
 import {
   ActionsContainer,
   AuthorRow,
-  Button,
+  // Button,
   CommentContainer,
   LeftContainer,
   StyledP,
@@ -38,6 +39,9 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
     voteDownMutate(comment.commentId)
   }
 
+  const commentDate = new Date(comment.createdAt)
+  commentDate.setHours(commentDate.getHours() + 2)
+
   return (
     <CommentContainer>
       <div>
@@ -48,18 +52,24 @@ export const CommentCard: FC<Props> = ({ comment, articleID }) => {
         <AuthorRow>
           <h3>{comment.author}</h3>
           <span>
-            <TimeAgo date={comment.createdAt} />
+            <TimeAgo date={commentDate} />
           </span>
         </AuthorRow>
         <StyledP>{comment.content}</StyledP>
         <ActionsContainer>
           <span>{score ? (score > 0 ? `+${score}` : score) : '0'}</span>
-          <Button type="button" onClick={voteUpHandler}>
-            <UpIcon />
-          </Button>
-          <Button type="button" onClick={voteDownHandler}>
-            <DownIcon />
-          </Button>
+          <span>
+            {' '}
+            <Button type="button" color="secondary" onClick={voteUpHandler}>
+              <UpIcon />
+            </Button>
+          </span>
+
+          <span>
+            <Button type="button" color="secondary" onClick={voteDownHandler}>
+              <DownIcon />
+            </Button>
+          </span>
         </ActionsContainer>
       </LeftContainer>
     </CommentContainer>

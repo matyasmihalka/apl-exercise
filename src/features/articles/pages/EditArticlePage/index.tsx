@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
 
 import { useArticleDetail } from '~/features/articles/hooks/useArticleDetail'
+import { withPrivateRoute } from '~/features/login/hocs/withPrivateRoute'
 import { Layout } from '~/features/ui/components/Layout'
 
 import { FlexMainContainer, PositionedSpinner } from './styled'
@@ -33,3 +34,5 @@ export const EditArticlePage: NextPage = () => {
     </div>
   )
 }
+
+export const PrivateEditArticlePage = withPrivateRoute(EditArticlePage)

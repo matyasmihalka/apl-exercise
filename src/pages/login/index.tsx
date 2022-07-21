@@ -1,1 +1,1 @@
-export { LoginPage as default } from '~/features/login/pages/loginPage'
+export { PublicLoginPage as default } from '~/features/login/pages/loginPage'
