@@ -2,7 +2,8 @@ import { useQuery } from 'react-query'
 
 import { publicApi } from '~/features/api'
 
-import type { ArticlesResponse, ArticleType } from '../types'
+import { articlesListBuilder } from '../lib/ArticlesListBuilder'
+import type { ArticlesResponse } from '../types'
 
 const initialData: ArticlesResponse = {
   items: [],
@@ -11,14 +12,6 @@ const initialData: ArticlesResponse = {
     offset: 0,
     total: 0,
   },
-}
-
-const sortComments = () => (a: ArticleType, b: ArticleType) => {
-  return a.createdAt < b.createdAt ? 1 : -1
-}
-
-const listBuilder = (comments: ArticleType[]) => {
-  return comments.sort(sortComments())
 }
 
 const useArticles = () => {
@@ -38,7 +31,7 @@ const useArticles = () => {
   const { data = initialData } = result
   let articles = data.items
   if (articles) {
-    articles = listBuilder(articles)
+    articles = articlesListBuilder(articles)
   }
 
   return { ...result, articles }
