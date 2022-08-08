@@ -1,1 +1,5 @@
-export { ArticleDetailPage as default } from '~/features/articles/pages/ArticleDetailPage'
+export {
+  ArticleDetailPage as default,
+  getStaticProps,
+  getStaticPaths,
+} from '~/features/articles/pages/ArticleDetailPage'

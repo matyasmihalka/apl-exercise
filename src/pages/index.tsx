@@ -1,1 +1,4 @@
-export { DashboardPage as default } from '~/features/articles/pages/DashboardPage'
+export {
+  DashboardPage as default,
+  getStaticProps,
+} from '~/features/articles/pages/DashboardPage'
