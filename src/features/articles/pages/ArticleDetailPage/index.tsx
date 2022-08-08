@@ -1,10 +1,10 @@
 import { CircularProgress } from '@mui/material'
 import type { GetStaticProps, NextPage } from 'next'
-// import { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 import { publicApi } from '~/features/api'
 import blurredDoggo from '~/features/articles/fixtures/assets/chesterBlurred.jpg'
-// import { useArticleDetail } from '~/features/articles/hooks/useArticleDetail'
+import { useArticleDetail } from '~/features/articles/hooks/useArticleDetail'
 import { useArticles } from '~/features/articles/hooks/useArticles'
 import { useImage } from '~/features/articles/hooks/useImage'
 import { Layout } from '~/features/ui/components/Layout'
@@ -15,14 +15,17 @@ import { FlexMainContainer, PositionedSpinner } from './styled'
 import type { ArticleDetailTye, ArticlesResponse } from '../../types'
 
 type Props = {
-  articleDetail: ArticleDetailTye
+  articleDetailStatic: ArticleDetailTye
 }
 
-export const ArticleDetailPage: NextPage<Props> = ({ articleDetail }) => {
-  // const router = useRouter()
-  // const { articleID = '' } = router.query
-  // const id = Array.isArray(articleID) ? '' : articleID
-  // const { articleDetail } = useArticleDetail(id)
+export const ArticleDetailPage: NextPage<Props> = ({ articleDetailStatic }) => {
+  const router = useRouter()
+  const { articleID = '' } = router.query
+  const id = Array.isArray(articleID) ? '' : articleID
+  const { articleDetail: articleDetailClient, isSuccess } = useArticleDetail(id)
+
+  const articleDetail = isSuccess ? articleDetailClient : articleDetailStatic
+
   const { imageObjectURL } = useImage(articleDetail?.imageId)
   const { articles: allArticles } = useArticles()
 
